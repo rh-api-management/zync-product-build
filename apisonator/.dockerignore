@@ -1,0 +1,4 @@
+.git
+.bundle
+openshift/*file
+**.swp

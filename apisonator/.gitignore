@@ -1,0 +1,35 @@
+.bundle
+*.gem
+
+lib/3scale/core
+lib/3scale/core.rb
+
+coverage
+
+.*.swp
+*~
+vendor
+docs/internal_api
+.vagrant/
+test/reports/*
+spec/reports/*
+bench.txt
+3scale_backend.state
+3scale_backend.sock
+
+.env
+.env.development
+
+/script/config/sentinel1/sentinel1.conf
+/script/config/sentinel2/sentinel2.conf
+/script/config/sentinel3/sentinel3.conf
+/script/config/twemproxy.yml
+
+/tmp
+
+# JetBrains IDE
+/.idea
+/.run
+
+# asdf
+.tool-versions

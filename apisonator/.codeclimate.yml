@@ -1,0 +1,5 @@
+exclude_paths:
+- contrib/**/*
+- script/**/*
+- spec/**/*
+- test/**/*

@@ -11,8 +11,7 @@
 # - BUILD_DEP_PKGS: Packages needed to build/install the project.
 # - PUMA_WORKERS: (edit ENV) Default number of Puma workers to serve the app.
 #
-#@follow_tag(registry.redhat.io/ubi8/ubi-minimal:latest)
-FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10-1086
 
 LABEL summary="3scale API Management platform backend." \
       description="3scale is an API Management Platform suitable to manage both internal and external API services. This image contains the platform's backend, which takes care of applying rate limits, authorization, and reporting of HTTP(s) requests." \

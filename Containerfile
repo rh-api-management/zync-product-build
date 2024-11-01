@@ -59,7 +59,7 @@ RUN echo -e "[ruby]\nname=ruby\nstream=${RUBY_VERSION}\nprofiles=\nstate=enabled
  && echo "gem: --bindir ~/.gem/bin" > "${HOME}/.gemrc" \
  && BUNDLED_WITH=$(cat Gemfile.lock | \
       grep -A 1 "^BUNDLED WITH$" | tail -n 1 | sed -e 's/\s//g') \
- && gem sources --add $GEMS_REPO --remove https://rubygems.org/ \
+# && gem sources --add $GEMS_REPO --remove https://rubygems.org/ \
  && gem install -N bundler --version "${BUNDLED_WITH}" --source $GEMS_REPO -n /usr/local/bin
 
 RUN echo Using $(bundle --version) \

@@ -20,14 +20,6 @@ LABEL summary="3scale API Management platform backend." \
       io.openshift.expose-services="3000:backend" \
       io.openshift.tags="api, backend, 3scale, 3scale-amp"
 
-# Labels consumed by Red Hat build service
-LABEL com.redhat.component="3scale-amp-backend-container" \
-      maintainer="eastizle@redhat.com" \
-      name="3scale-amp2/backend-rhel8" \
-      version="1.18.0" \
-      upstream_repo="${CI_APISONATOR_UPSTREAM_URL}" \
-      upstream_ref="${CI_APISONATOR_UPSTREAM_COMMIT}"
-
 ARG RUBY_VERSION="3.3"
 ARG BUILD_DEPS="tar make file findutils git patch gcc automake autoconf libtool redhat-rpm-config openssl-devel ruby-devel"
 ARG PUMA_WORKERS=1
@@ -40,15 +32,12 @@ ENV TZ=:/etc/localtime \
     CONFIG_SAAS=false \
     CONFIG_LOG_PATH=/tmp/ \
     CONFIG_WORKERS_LOG_FILE=/dev/stdout \
-    PUMA_WORKERS=${PUMA_WORKERS} \
-    GEMS_REPO=https://repository.jboss.org/nexus/content/groups/rubygems_store/
+    PUMA_WORKERS=${PUMA_WORKERS}
 
 COPY apisonator ${HOME}/app
 RUN mkdir -p /opt/ruby
 
 WORKDIR "${HOME}/app"
-
-
 
 # Install Ruby and bundler
 RUN echo -e "[ruby]\nname=ruby\nstream=${RUBY_VERSION}\nprofiles=\nstate=enabled\n" > /etc/dnf/modules.d/ruby.module \
@@ -63,8 +52,6 @@ RUN echo -e "[ruby]\nname=ruby\nstream=${RUBY_VERSION}\nprofiles=\nstate=enabled
       grep -A 1 "^BUNDLED WITH$" | tail -n 1 | sed -e 's/\s//g') \
 # && . /tmp/cachi2.env \
  && gem install -N bundler --version "${BUNDLED_WITH}" -n /usr/local/bin
-# && gem sources --add $GEMS_REPO --remove https://rubygems.org/ \
-# && gem install -N bundler --version "${BUNDLED_WITH}" --source $GEMS_REPO -n /usr/local/bin
 
 RUN echo Using $(bundle --version) \
 # && . /tmp/cachi2.env \
@@ -84,9 +71,6 @@ RUN BACKEND_VERSION=$(gem build apisonator.gemspec | \
 # && . /tmp/cachi2.env \
  && bundle install --jobs $(grep -c processor /proc/cpuinfo) \
  && ln -s /opt/ruby/apisonator-${BACKEND_VERSION} /opt/app
-# && cp --archive ${HOME}/app/.bundle ${HOME}/app/rubygems-proxy-ca.pem "/opt/ruby/apisonator-${BACKEND_VERSION}/" \
-# && mv ${REMOTE_SOURCES_DIR}/apisonator/deps /opt/ruby/deps \
-# && SSL_CERT_FILE=/opt/ruby/apisonator-${BACKEND_VERSION}/rubygems-proxy-ca.pem bundle install --jobs $(grep -c processor /proc/cpuinfo) \
 
 # Bundler doesn't install native extensions for gems that are used as local git overrides (which is how cachito provides `git` dependencies in a Gemfile),
 # so we need to build those manually, for all such gems that require native extensions (in our case, puma)

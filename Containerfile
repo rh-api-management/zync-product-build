@@ -48,6 +48,8 @@ RUN mkdir -p /opt/ruby
 
 WORKDIR "${HOME}/app"
 
+
+
 # Install Ruby and bundler
 RUN echo -e "[ruby]\nname=ruby\nstream=${RUBY_VERSION}\nprofiles=\nstate=enabled\n" > /etc/dnf/modules.d/ruby.module \
  && microdnf update --nodocs \
@@ -59,10 +61,13 @@ RUN echo -e "[ruby]\nname=ruby\nstream=${RUBY_VERSION}\nprofiles=\nstate=enabled
  && echo "gem: --bindir ~/.gem/bin" > "${HOME}/.gemrc" \
  && BUNDLED_WITH=$(cat Gemfile.lock | \
       grep -A 1 "^BUNDLED WITH$" | tail -n 1 | sed -e 's/\s//g') \
+ && . /tmp/cachi2.env \
+ && gem install -N bundler --version "${BUNDLED_WITH}" -n /usr/local/bin
 # && gem sources --add $GEMS_REPO --remove https://rubygems.org/ \
- && gem install -N bundler --version "${BUNDLED_WITH}" --source $GEMS_REPO -n /usr/local/bin
+# && gem install -N bundler --version "${BUNDLED_WITH}" --source $GEMS_REPO -n /usr/local/bin
 
 RUN echo Using $(bundle --version) \
+ && . /tmp/cachi2.env \
  && bundle config list \
  && bundle config --local silence_root_warning 1 \
  && bundle config --local disable_shared_gems 1 \
@@ -76,10 +81,12 @@ RUN BACKEND_VERSION=$(gem build apisonator.gemspec | \
       sed -n -e 's/^\s*Version\:\s*\([^[:space:]]*\)$/\1/p') \
  && gem unpack "apisonator-${BACKEND_VERSION}.gem" --target=/opt/ruby \
  && cd "/opt/ruby/apisonator-${BACKEND_VERSION}" \
- && cp --archive ${HOME}/app/.bundle ${HOME}/app/rubygems-proxy-ca.pem "/opt/ruby/apisonator-${BACKEND_VERSION}/" \
- && mv ${REMOTE_SOURCES_DIR}/apisonator/deps /opt/ruby/deps \
- && SSL_CERT_FILE=/opt/ruby/apisonator-${BACKEND_VERSION}/rubygems-proxy-ca.pem bundle install --jobs $(grep -c processor /proc/cpuinfo) \
+ && . /tmp/cachi2.env \
+ && bundle install --jobs $(grep -c processor /proc/cpuinfo) \
  && ln -s /opt/ruby/apisonator-${BACKEND_VERSION} /opt/app
+# && cp --archive ${HOME}/app/.bundle ${HOME}/app/rubygems-proxy-ca.pem "/opt/ruby/apisonator-${BACKEND_VERSION}/" \
+# && mv ${REMOTE_SOURCES_DIR}/apisonator/deps /opt/ruby/deps \
+# && SSL_CERT_FILE=/opt/ruby/apisonator-${BACKEND_VERSION}/rubygems-proxy-ca.pem bundle install --jobs $(grep -c processor /proc/cpuinfo) \
 
 # Bundler doesn't install native extensions for gems that are used as local git overrides (which is how cachito provides `git` dependencies in a Gemfile),
 # so we need to build those manually, for all such gems that require native extensions (in our case, puma)

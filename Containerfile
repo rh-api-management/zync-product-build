@@ -43,9 +43,6 @@ ENV TZ=:/etc/localtime \
     PUMA_WORKERS=${PUMA_WORKERS} \
     GEMS_REPO=https://repository.jboss.org/nexus/content/groups/rubygems_store/
 
-ARG BUILD_TYPE=brew
-COPY $BUILD_TYPE.repo /etc/yum.repos.d/brew.repo
-
 COPY apisonator ${HOME}/app
 RUN mkdir -p /opt/ruby
 

@@ -1,0 +1,3 @@
+[submodule "drift-detection"]
+	path = drift-detection
+	url = https://github.com/arewm/drift-detection

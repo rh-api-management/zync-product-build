@@ -1,0 +1,82 @@
+FROM registry.access.redhat.com/ubi9/ruby-31:1-117.1729767845 as drift-detectorist
+
+# Attempt to detect Drift in files that have changed upstream and need to be updated for the product build.
+USER 0
+COPY drift-detection/detector.sh /detector.sh
+# Check to see if we need to react to any uptream changes
+COPY drift-cache/zync /drift-cache/zync
+WORKDIR /tmp
+COPY rh-zync/zync/Dockerfile .
+RUN /detector.sh ./Dockerfile /drift-cache/zync/Dockerfile
+
+FROM registry.access.redhat.com/ubi9/ruby-31:1-117.1729767845
+
+LABEL summary="Zync - the sync tool" \
+      description="Zync is going to take your 3scale data \
+                   and push it somewhere else, reliably. \
+                   Offers only one directional sync (from 3scale to other systems)." \
+      io.k8s.display-name="Zync" \
+      io.k8s.description="Zync is going to take your 3scale data \
+                   and push it somewhere else, reliably. \
+                   Offers only one directional sync (from 3scale to other systems)." \
+      io.openshift.expose-services="8080:zync" \
+      io.openshift.tags="sync, api management, 3scale, rhamp"
+
+ENV RAILS_ENV=production \
+   RAILS_LOG_TO_STDOUT=1 \
+   BUNDLE_WITHOUT=development:test \
+   TZ=:/etc/localtime \
+   BUNDLE_GEMFILE=Gemfile \
+   DISABLE_SPRING=1 \
+   USER_UID=1001
+EXPOSE 8080
+
+USER root
+
+RUN mkdir -p tmp log; chmod -vfR g+w tmp log
+
+RUN dnf install --setopt=skip_missing_names_on_install=False,tsflags=nodocs -y shared-mime-info postgresql rubygem-irb rubygem-rdoc \
+    && dnf clean all \
+    && rm -rf /var/cache/yum
+
+# Workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2221938
+RUN ln -s /usr/share/gems/gems/rdoc-6.4.0/lib/rdoc.rb /usr/share/ruby/ \
+    ln -s /usr/share/gems/gems/rdoc-6.4.0/lib/rdoc /usr/share/ruby/
+
+COPY zync /opt/zync
+
+WORKDIR /opt/zync
+
+# Install dependencies
+RUN cd /opt/zync \
+    && BUNDLER_VERSION=$(awk '/BUNDLED WITH/ { getline; print $1 }' Gemfile.lock) \
+    && gem install --no-document bundler:$BUNDLER_VERSION \
+    && bundle config list \
+    && SSL_CERT_FILE=/opt/zync/rubygems-proxy-ca.pem bundle install --jobs $(grep -c processor /proc/cpuinfo) --retry=5 --full-index \
+    && chgrp root /opt/zync/
+
+
+RUN cd /opt/zync \
+   && rm -f log/*.log \
+   && touch /opt/zync/entrypoint.sh \
+   && chmod 755 /opt/zync/entrypoint.sh \
+   && echo '#!/bin/sh' >> /opt/zync/entrypoint.sh \
+   && echo 'bundle exec bin/rails db:setup 2> /dev/null || bundle exec bin/rails db:migrate' >> /opt/zync/entrypoint.sh \
+   && echo 'exec bundle exec "$@"' >> /opt/zync/entrypoint.sh
+
+# REMOVE when fixed in https://bugzilla.redhat.com/show_bug.cgi?id=2138434
+RUN chmod +t /tmp
+
+# Bundler runs git commands on git dependencies when configured as local git repos
+# https://bundler.io/guides/git.html#local-git-repos
+# Cachito provides deps as git overrides
+# git will check if the current user is the owner of the git repository folder
+# The git check was added in https://github.com/git/git/commit/8959555cee7ec045958f9b6dd62e541affb7e7d9 and included in git v2.35.2 or newer.
+# Openshift changes the effective user ID, so this git check needs to be bypassed.
+RUN git config --global --add safe.directory '*'
+
+USER ${USER_UID}
+
+ENTRYPOINT ["/opt/zync/entrypoint.sh"]
+
+CMD ["bin/rails", "server", "--binding", "0.0.0.0", "--port", "8080"]

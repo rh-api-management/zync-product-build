@@ -49,8 +49,7 @@ WORKDIR /opt/zync
 
 # Install dependencies
 RUN cd /opt/zync \
-    && BUNDLER_VERSION=$(awk '/BUNDLED WITH/ { getline; print $1 }' Gemfile.lock) \
-    && gem install --no-document bundler:$BUNDLER_VERSION \
+    && echo Using $(bundle --version) \
     && bundle config list \
     && SSL_CERT_FILE=/opt/zync/rubygems-proxy-ca.pem bundle install --jobs $(grep -c processor /proc/cpuinfo) --retry=5 --full-index \
     && chgrp root /opt/zync/

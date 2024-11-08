@@ -1,3 +1,6 @@
 [submodule "drift-detection"]
 	path = drift-detection
 	url = https://github.com/arewm/drift-detection
+[submodule "rh-zync/zync"]
+	path = rh-zync/zync
+	url = https://github.com/3scale/zync

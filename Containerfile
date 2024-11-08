@@ -56,15 +56,7 @@ RUN cat /cachi2/cachi2.env
 RUN microdnf module enable ruby:${RUBY_VERSION} \
  && microdnf install --nodocs ruby \
  && chown -R 1001:1001 "${HOME}" \
- && microdnf install --nodocs ${BUILD_DEPS} \
- && microdnf remove rubygem-bundler
-
-# Install bundler
-RUN mkdir -p "${HOME}/.gem/bin" \
- && echo "gem: --bindir ~/.gem/bin" > "${HOME}/.gemrc" \
- && BUNDLED_WITH=$(cat Gemfile.lock | \
-      grep -A 1 "^BUNDLED WITH$" | tail -n 1 | sed -e 's/\s//g') \
- && gem install -N bundler --version "${BUNDLED_WITH}" -n /usr/local/bin
+ && microdnf install --nodocs ${BUILD_DEPS}
 
 RUN echo Using $(bundle --version) \
  && bundle config list \

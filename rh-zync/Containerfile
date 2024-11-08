@@ -43,7 +43,7 @@ RUN dnf install --setopt=skip_missing_names_on_install=False,tsflags=nodocs -y s
 RUN ln -s /usr/share/gems/gems/rdoc-6.4.0/lib/rdoc.rb /usr/share/ruby/ \
     ln -s /usr/share/gems/gems/rdoc-6.4.0/lib/rdoc /usr/share/ruby/
 
-COPY zync /opt/zync
+COPY rh-zync/zync /opt/zync
 
 WORKDIR /opt/zync
 

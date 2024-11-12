@@ -50,22 +50,15 @@ RUN mkdir -p /opt/ruby
 
 WORKDIR "${HOME}/app"
 
-# Install Ruby and bundler
-RUN echo -e "[ruby]\nname=ruby\nstream=${RUBY_VERSION}\nprofiles=\nstate=enabled\n" > /etc/dnf/modules.d/ruby.module \
- && microdnf update --nodocs \
+RUN cat /cachi2/cachi2.env
+
+# Install Ruby
+RUN microdnf module enable ruby:${RUBY_VERSION} \
  && microdnf install --nodocs ruby \
  && chown -R 1001:1001 "${HOME}" \
- && microdnf install --nodocs ${BUILD_DEPS} \
- && microdnf remove rubygem-bundler \
- && mkdir -p "${HOME}/.gem/bin" \
- && echo "gem: --bindir ~/.gem/bin" > "${HOME}/.gemrc" \
- && BUNDLED_WITH=$(cat Gemfile.lock | \
-      grep -A 1 "^BUNDLED WITH$" | tail -n 1 | sed -e 's/\s//g') \
-# && . /tmp/cachi2.env \
- && gem install -N bundler --version "${BUNDLED_WITH}" -n /usr/local/bin
+ && microdnf install --nodocs ${BUILD_DEPS}
 
 RUN echo Using $(bundle --version) \
-# && . /tmp/cachi2.env \
  && bundle config list \
  && bundle config --local silence_root_warning 1 \
  && bundle config --local disable_shared_gems 1 \

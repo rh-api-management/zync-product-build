@@ -1573,10 +1573,10 @@ arches:
     name: zlib
     evr: 1.2.11-25.el8
   module_metadata:
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/aarch64/appstream/os/repodata/56cfa8eb51dd4778efad6e6040cce75fdb4970b6f1717d4c7e5d564c6753bccf-modules.yaml.gz
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/aarch64/appstream/os/repodata/f0246ea9bd9bde1e6c7eac4c370e48345daf3adeade6f553262850265e8babbd-modules.yaml.gz
     repoid: ubi-8-appstream-rpms
     size: 57991
-    checksum: sha256:56cfa8eb51dd4778efad6e6040cce75fdb4970b6f1717d4c7e5d564c6753bccf
+    checksum: sha256:f0246ea9bd9bde1e6c7eac4c370e48345daf3adeade6f553262850265e8babbd
 - arch: ppc64le
   packages:
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/appstream/os/Packages/a/annobin-11.13-2.el8.ppc64le.rpm
@@ -3161,10 +3161,10 @@ arches:
     name: zlib
     evr: 1.2.11-25.el8
   module_metadata:
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/appstream/os/repodata/dcbcb8354e3cbba6c6fe9016032730c6075f6641b65fb9369c2c7a92943a876d-modules.yaml.gz
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/appstream/os/repodata/b11f360379b11c84f3b5c7d2cab0d14b4f9dd15b1a3919d8873a7c54b7c1a7ec-modules.yaml.gz
     repoid: ubi-8-appstream-rpms
     size: 57798
-    checksum: sha256:dcbcb8354e3cbba6c6fe9016032730c6075f6641b65fb9369c2c7a92943a876d
+    checksum: sha256:b11f360379b11c84f3b5c7d2cab0d14b4f9dd15b1a3919d8873a7c54b7c1a7ec
 - arch: s390x
   packages:
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/appstream/os/Packages/a/annobin-11.13-2.el8.s390x.rpm
@@ -4736,10 +4736,10 @@ arches:
     name: zlib
     evr: 1.2.11-25.el8
   module_metadata:
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/appstream/os/repodata/91281773c61bc6bcd39f2d9447d47acc2086505b919c8641bf2a001eacde0b5d-modules.yaml.gz
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/appstream/os/repodata/5b352d8028483220be176f55261ff0a312c578351c4d780ab23b4d65b246c55c-modules.yaml.gz
     repoid: ubi-8-appstream-rpms
     size: 56398
-    checksum: sha256:91281773c61bc6bcd39f2d9447d47acc2086505b919c8641bf2a001eacde0b5d
+    checksum: sha256:5b352d8028483220be176f55261ff0a312c578351c4d780ab23b4d65b246c55c
 - arch: x86_64
   packages:
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/Packages/a/annobin-11.13-2.el8.x86_64.rpm
@@ -6290,7 +6290,7 @@ arches:
     name: zlib
     evr: 1.2.11-25.el8
   module_metadata:
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/repodata/902aeeaa3dcd8675eeeb2daa8af1b6d5bfac9356476e0aef08b4b3db628308e2-modules.yaml.gz
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/repodata/4e8cfffab7659ff0a668bba70be720a2e3caffdcf6602b2cf203896e99c7ecc9-modules.yaml.gz
     repoid: ubi-8-appstream-rpms
     size: 59037
-    checksum: sha256:902aeeaa3dcd8675eeeb2daa8af1b6d5bfac9356476e0aef08b4b3db628308e2
+    checksum: sha256:4e8cfffab7659ff0a668bba70be720a2e3caffdcf6602b2cf203896e99c7ecc9

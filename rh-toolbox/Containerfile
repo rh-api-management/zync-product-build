@@ -28,7 +28,7 @@ RUN cd /opt/toolbox \
 
 RUN cd /opt/toolbox/ \
     && bundle config list \
-    && SSL_CERT_FILE=/opt/toolbox/rubygems-proxy-ca.pem bundle install \
+    && bundle install \
     && bundle binstubs 3scale_toolbox
 
 RUN chmod +t /tmp

@@ -1,5 +1,4 @@
-#@follow_tag(registry.redhat.io/ubi8/ruby-30:1)
-FROM registry.redhat.io/ubi8/ruby-30:1-162.1717588679
+FROM registry.access.redhat.com/ubi8/ruby-30:1-162.1717588679
 
 LABEL summary="The 3scale command line interface" \
       description="3scale toolbox is a set of tools to help you manage your 3scale product" \

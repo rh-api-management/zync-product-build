@@ -9,6 +9,7 @@ metadata:
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "main" &&
       (".tekton/toolbox-pull-request.yaml".pathChanged() ||
       ".tekton/toolbox-push.yaml".pathChanged() ||
+      "drift-cache/toolbox/***".pathChanged() ||
       "rh-toolbox/***".pathChanged() ||
       "rh-toolbox/toolbox".pathChanged())
 

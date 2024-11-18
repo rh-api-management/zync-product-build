@@ -1,0 +1,18 @@
+{
+    "extends": [
+        "github>konflux-ci/mintmaker//config/renovate/renovate.json"
+    ],
+    "ignorePaths": ["drift-cache"],
+    "packageRules": [
+      {
+        "description": "Automerge patch updates for parent image",
+        "matchUpdateTypes": ["patch"],
+        "matchPackageNames": "registry.access.redhat.com/ubi8/ubi-minimal",
+        "automerge": true
+      }
+    ],
+    "lockFileMaintenance": {
+      "enabled": true,
+      "automerge": true
+    }
+}

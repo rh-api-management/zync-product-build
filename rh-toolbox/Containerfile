@@ -1,0 +1,55 @@
+#@follow_tag(registry.redhat.io/ubi8/ruby-30:1)
+FROM registry.redhat.io/ubi8/ruby-30:1-162.1717588679
+
+LABEL summary="The 3scale command line interface" \
+      description="3scale toolbox is a set of tools to help you manage your 3scale product" \
+      io.k8s.description="3scale toolbox is a set of tools to help you manage your 3scale product" \
+      io.k8s.display-name="3scale Toolbox" \
+      io.openshift.expose-services="" \
+      io.openshift.tags="3scale, cli, toolbox, openapi, rubygems, rhamp"
+
+# Labels consumed by Red Hat build service
+LABEL com.redhat.component="3scale-toolbox-container" \
+      name="3scale-amp2/toolbox-rhel8" \
+      version="1.11.0"\
+      upstream_repo="${CI_3SCALE_TOOLBOX_UPSTREAM_URL}" \
+      upstream_ref="${CI_3SCALE_TOOLBOX_UPSTREAM_COMMIT}" \
+      maintainer="eastizle@redhat.com"
+
+ENV TZ=:/etc/localtime \
+    DISABLE_SPRING=1
+
+USER root
+
+# Copy the upstream sources from cachito integration
+COPY $REMOTE_SOURCES $REMOTE_SOURCES_DIR
+
+RUN mv ${REMOTE_SOURCES_DIR}/toolbox/app /opt/toolbox
+RUN mv ${REMOTE_SOURCES_DIR}/toolbox/deps /opt/deps
+
+WORKDIR /opt/toolbox
+
+RUN mkdir -p /root/licenses/3scale-toolbox-container \
+    && cd /opt/toolbox \
+    && cp ./licenses.xml /root/licenses/3scale-toolbox-container/licenses.xml
+
+RUN cd /opt/toolbox \
+    && bundle config --local silence_root_warning 1 \
+    && bundle config --local disable_shared_gems 1 \
+    && bundle config --local without "development test" \
+    && bundle config --local gemfile Gemfile
+
+RUN cd /opt/toolbox/ \
+    && bundle config list \
+    && SSL_CERT_FILE=/opt/toolbox/rubygems-proxy-ca.pem bundle install \
+    && bundle binstubs 3scale_toolbox
+
+RUN chmod +t /tmp
+
+ENV PATH="/opt/toolbox/bin:${PATH}"
+
+USER default
+
+WORKDIR /opt/app-root/src
+
+CMD ["/bin/bash"]

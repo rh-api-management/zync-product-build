@@ -4,3 +4,6 @@
 [submodule "rh-zync/zync"]
 	path = rh-zync/zync
 	url = https://github.com/3scale/zync
+[submodule "rh-toolbox/toolbox"]
+	path = rh-toolbox/toolbox
+	url = https://github.com/3scale/3scale_toolbox

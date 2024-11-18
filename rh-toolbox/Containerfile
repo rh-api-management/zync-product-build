@@ -12,11 +12,7 @@ ENV TZ=:/etc/localtime \
 
 USER root
 
-# Copy the upstream sources from cachito integration
-COPY $REMOTE_SOURCES $REMOTE_SOURCES_DIR
-
-RUN mv ${REMOTE_SOURCES_DIR}/toolbox/app /opt/toolbox
-RUN mv ${REMOTE_SOURCES_DIR}/toolbox/deps /opt/deps
+COPY ./rh-toolbox/toolbox /opt/toolbox
 
 WORKDIR /opt/toolbox
 

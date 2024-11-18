@@ -340,13 +340,13 @@ arches:
     name: rust-srpm-macros
     evr: 5-2.el8
     sourcerpm: rust-srpm-macros-5-2.el8.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/aarch64/baseos/os/Packages/b/binutils-2.30-123.el8.aarch64.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/aarch64/baseos/os/Packages/b/binutils-2.30-125.el8_10.aarch64.rpm
     repoid: ubi-8-baseos-rpms
-    size: 6354240
-    checksum: sha256:7d477b579b4111788ff8ad3183f2c755a88576c4418906205b25e805ee7dd03a
+    size: 6313884
+    checksum: sha256:7cac671da21dd848d63b9865c1aaf74f346fe4af80997c70a944d367531c10f7
     name: binutils
-    evr: 2.30-123.el8
-    sourcerpm: binutils-2.30-123.el8.src.rpm
+    evr: 2.30-125.el8_10
+    sourcerpm: binutils-2.30-125.el8_10.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/aarch64/baseos/os/Packages/c/cracklib-2.9.6-15.el8.aarch64.rpm
     repoid: ubi-8-baseos-rpms
     size: 95220
@@ -1152,12 +1152,12 @@ arches:
     checksum: sha256:0f53ebd0064e58adbfa1bbd98930964cb86406681dcfd70dabdf932e71191ddc
     name: rust-srpm-macros
     evr: 5-2.el8
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/aarch64/baseos/source/SRPMS/Packages/b/binutils-2.30-123.el8.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/aarch64/baseos/source/SRPMS/Packages/b/binutils-2.30-125.el8_10.src.rpm
     repoid: ubi-8-baseos-source
-    size: 21026200
-    checksum: sha256:10fdc70d7ce9d814851ab8ac8bc84e37b5152b9aaaf8ea7b9d902087e05554ff
+    size: 21080005
+    checksum: sha256:3dfe179ebe80b9640e735710b9f01476905687dc10e5a3516438b24d65e66ff3
     name: binutils
-    evr: 2.30-123.el8
+    evr: 2.30-125.el8_10
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/aarch64/baseos/source/SRPMS/Packages/c/cracklib-2.9.6-15.el8.src.rpm
     repoid: ubi-8-baseos-source
     size: 6423670
@@ -1915,13 +1915,13 @@ arches:
     name: rust-srpm-macros
     evr: 5-2.el8
     sourcerpm: rust-srpm-macros-5-2.el8.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/baseos/os/Packages/b/binutils-2.30-123.el8.ppc64le.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/baseos/os/Packages/b/binutils-2.30-125.el8_10.ppc64le.rpm
     repoid: ubi-8-baseos-rpms
-    size: 6811688
-    checksum: sha256:8d475fc892d20d61b2cf01c80a980d8e593c887ad8759876d63fb6a3e734f258
+    size: 6765012
+    checksum: sha256:2c91d02667dfc824ac17592db538d500e38e2224dd83d17b22dceb3a5ca44638
     name: binutils
-    evr: 2.30-123.el8
-    sourcerpm: binutils-2.30-123.el8.src.rpm
+    evr: 2.30-125.el8_10
+    sourcerpm: binutils-2.30-125.el8_10.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/baseos/os/Packages/c/cracklib-2.9.6-15.el8.ppc64le.rpm
     repoid: ubi-8-baseos-rpms
     size: 96900
@@ -2734,12 +2734,12 @@ arches:
     checksum: sha256:0f53ebd0064e58adbfa1bbd98930964cb86406681dcfd70dabdf932e71191ddc
     name: rust-srpm-macros
     evr: 5-2.el8
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/baseos/source/SRPMS/Packages/b/binutils-2.30-123.el8.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/baseos/source/SRPMS/Packages/b/binutils-2.30-125.el8_10.src.rpm
     repoid: ubi-8-baseos-source
-    size: 21026200
-    checksum: sha256:10fdc70d7ce9d814851ab8ac8bc84e37b5152b9aaaf8ea7b9d902087e05554ff
+    size: 21080005
+    checksum: sha256:3dfe179ebe80b9640e735710b9f01476905687dc10e5a3516438b24d65e66ff3
     name: binutils
-    evr: 2.30-123.el8
+    evr: 2.30-125.el8_10
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/baseos/source/SRPMS/Packages/c/cracklib-2.9.6-15.el8.src.rpm
     repoid: ubi-8-baseos-source
     size: 6423670
@@ -3503,13 +3503,13 @@ arches:
     name: rust-srpm-macros
     evr: 5-2.el8
     sourcerpm: rust-srpm-macros-5-2.el8.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/baseos/os/Packages/b/binutils-2.30-123.el8.s390x.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/baseos/os/Packages/b/binutils-2.30-125.el8_10.s390x.rpm
     repoid: ubi-8-baseos-rpms
-    size: 10237708
-    checksum: sha256:5b57c6bd3b7fe5a560d233769bd18cf6eaee61cf5a22501049045a56315acf52
+    size: 10194120
+    checksum: sha256:4fe1ec520732e21632b62f1a5ed4c9baf90ba75636cf50f55ecda702489f8c49
     name: binutils
-    evr: 2.30-123.el8
-    sourcerpm: binutils-2.30-123.el8.src.rpm
+    evr: 2.30-125.el8_10
+    sourcerpm: binutils-2.30-125.el8_10.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/baseos/os/Packages/c/cracklib-2.9.6-15.el8.s390x.rpm
     repoid: ubi-8-baseos-rpms
     size: 95348
@@ -4315,12 +4315,12 @@ arches:
     checksum: sha256:0f53ebd0064e58adbfa1bbd98930964cb86406681dcfd70dabdf932e71191ddc
     name: rust-srpm-macros
     evr: 5-2.el8
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/baseos/source/SRPMS/Packages/b/binutils-2.30-123.el8.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/baseos/source/SRPMS/Packages/b/binutils-2.30-125.el8_10.src.rpm
     repoid: ubi-8-baseos-source
-    size: 21026200
-    checksum: sha256:10fdc70d7ce9d814851ab8ac8bc84e37b5152b9aaaf8ea7b9d902087e05554ff
+    size: 21080005
+    checksum: sha256:3dfe179ebe80b9640e735710b9f01476905687dc10e5a3516438b24d65e66ff3
     name: binutils
-    evr: 2.30-123.el8
+    evr: 2.30-125.el8_10
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/baseos/source/SRPMS/Packages/c/cracklib-2.9.6-15.el8.src.rpm
     repoid: ubi-8-baseos-source
     size: 6423670
@@ -5078,13 +5078,13 @@ arches:
     name: rust-srpm-macros
     evr: 5-2.el8
     sourcerpm: rust-srpm-macros-5-2.el8.src.rpm
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/baseos/os/Packages/b/binutils-2.30-123.el8.x86_64.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/baseos/os/Packages/b/binutils-2.30-125.el8_10.x86_64.rpm
     repoid: ubi-8-baseos-rpms
-    size: 6094684
-    checksum: sha256:320e7c22d9e27726827d278ca4f585bd6980bff530d8d7c9d759199625cd29f6
+    size: 6049096
+    checksum: sha256:047fc8bd5bb6def766c46397c8a535faa3634a54832edb301c4d27dd92400cc0
     name: binutils
-    evr: 2.30-123.el8
-    sourcerpm: binutils-2.30-123.el8.src.rpm
+    evr: 2.30-125.el8_10
+    sourcerpm: binutils-2.30-125.el8_10.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/baseos/os/Packages/c/cracklib-2.9.6-15.el8.x86_64.rpm
     repoid: ubi-8-baseos-rpms
     size: 95532
@@ -5869,12 +5869,12 @@ arches:
     checksum: sha256:0f53ebd0064e58adbfa1bbd98930964cb86406681dcfd70dabdf932e71191ddc
     name: rust-srpm-macros
     evr: 5-2.el8
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/baseos/source/SRPMS/Packages/b/binutils-2.30-123.el8.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/baseos/source/SRPMS/Packages/b/binutils-2.30-125.el8_10.src.rpm
     repoid: ubi-8-baseos-source
-    size: 21026200
-    checksum: sha256:10fdc70d7ce9d814851ab8ac8bc84e37b5152b9aaaf8ea7b9d902087e05554ff
+    size: 21080005
+    checksum: sha256:3dfe179ebe80b9640e735710b9f01476905687dc10e5a3516438b24d65e66ff3
     name: binutils
-    evr: 2.30-123.el8
+    evr: 2.30-125.el8_10
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/baseos/source/SRPMS/Packages/c/cracklib-2.9.6-15.el8.src.rpm
     repoid: ubi-8-baseos-source
     size: 6423670

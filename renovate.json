@@ -1,0 +1,29 @@
+{
+    "extends": [
+        "github>konflux-ci/mintmaker//config/renovate/renovate.json"
+    ],
+    "ignorePaths": ["drift-cache"],
+    "packageRules": [
+      {
+        "description": "Automerge patch updates for toolbox parent image",
+        "matchUpdateTypes": ["patch"],
+        "matchPackageNames": "registry.access.redhat.com/ubi8/ruby-30",
+        "automerge": true
+      },
+      {
+        "description": "Automerge patch updates for zync parent image",
+        "matchUpdateTypes": ["patch"],
+        "matchPackageNames": "registry.access.redhat.com/ubi9/ruby-31",
+        "automerge": true
+      },
+      {
+        "matchManagers": ["tekton"],
+        "automerge": true,
+        "automergeType": "branch"
+      }
+    ],
+    "lockFileMaintenance": {
+      "enabled": true,
+      "automerge": true
+    }
+}

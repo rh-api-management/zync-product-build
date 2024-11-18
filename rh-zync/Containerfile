@@ -40,8 +40,9 @@ RUN dnf install --setopt=skip_missing_names_on_install=False,tsflags=nodocs -y s
     && rm -rf /var/cache/yum
 
 # Workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2221938
-RUN ln -s /usr/share/gems/gems/rdoc-6.4.0/lib/rdoc.rb /usr/share/ruby/ \
-    ln -s /usr/share/gems/gems/rdoc-6.4.0/lib/rdoc /usr/share/ruby/
+RUN test -d /usr/share/gems/gems/rdoc-6.4.1.1 && \
+    ln -s /usr/share/gems/gems/rdoc-6.4.1.1/lib/rdoc.rb /usr/share/ruby/rdoc.rb && \
+    ln -s /usr/share/gems/gems/rdoc-6.4.1.1/lib/rdoc /usr/share/ruby/rdoc
 
 COPY ./rh-zync/zync /opt/zync
 

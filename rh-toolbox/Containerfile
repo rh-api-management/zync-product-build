@@ -16,10 +16,6 @@ COPY ./rh-toolbox/toolbox /opt/toolbox
 
 WORKDIR /opt/toolbox
 
-RUN mkdir -p /root/licenses/3scale-toolbox-container \
-    && cd /opt/toolbox \
-    && cp ./licenses.xml /root/licenses/3scale-toolbox-container/licenses.xml
-
 RUN cd /opt/toolbox \
     && bundle config --local silence_root_warning 1 \
     && bundle config --local disable_shared_gems 1 \

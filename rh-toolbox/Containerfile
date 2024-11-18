@@ -7,14 +7,6 @@ LABEL summary="The 3scale command line interface" \
       io.openshift.expose-services="" \
       io.openshift.tags="3scale, cli, toolbox, openapi, rubygems, rhamp"
 
-# Labels consumed by Red Hat build service
-LABEL com.redhat.component="3scale-toolbox-container" \
-      name="3scale-amp2/toolbox-rhel8" \
-      version="1.11.0"\
-      upstream_repo="${CI_3SCALE_TOOLBOX_UPSTREAM_URL}" \
-      upstream_ref="${CI_3SCALE_TOOLBOX_UPSTREAM_COMMIT}" \
-      maintainer="eastizle@redhat.com"
-
 ENV TZ=:/etc/localtime \
     DISABLE_SPRING=1
 

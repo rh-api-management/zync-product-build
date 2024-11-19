@@ -11,6 +11,7 @@ metadata:
       (".tekton/toolbox-pull-request.yaml".pathChanged() ||
       ".tekton/toolbox-push.yaml".pathChanged() ||
       "rh-toolbox/***".pathChanged() ||
+      "drift-cache/toolbox/***".pathChanged() ||
       "rh-toolbox/toolbox".pathChanged())
   creationTimestamp: null
   labels:

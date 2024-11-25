@@ -117,13 +117,6 @@ LABEL summary="3scale API Management platform main system." \
       io.openshift.expose-services="3000:system,9306:system" \
       io.openshift.tags="integration, api management, 3scale, rhamp, developer portal, api documentation, api analytics"
 
-# Labels consumed by Red Hat build service
-LABEL com.redhat.component="3scale-amp-system-container" \
-      name="3scale-amp2/system-rhel8" \
-      version="1.17.0" \
-      upstream_repo="${CI_PORTA_UPSTREAM_URL}" \
-      upstream_ref="${CI_PORTA_UPSTREAM_COMMIT}"
-
 WORKDIR $HOME
 
 COPY --from=builder /opt/system/ .

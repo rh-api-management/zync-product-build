@@ -7,3 +7,6 @@
 [submodule "rh-toolbox/toolbox"]
 	path = rh-toolbox/toolbox
 	url = https://github.com/3scale/3scale_toolbox
+[submodule "rh-porta/porta"]
+	path = rh-porta/porta
+	url = https://github.com/3scale/porta

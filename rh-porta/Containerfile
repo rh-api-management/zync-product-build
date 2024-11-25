@@ -32,9 +32,9 @@ RUN set -x \
     && bundle config set --local deployment true \
     && bundle config set --local without development:test \
     && bundle config list \
-    && SSL_CERT_FILE=/opt/system/rubygems-proxy-ca.pem bundle install --verbose --jobs $(grep -c processor /proc/cpuinfo) --retry=5 \
+    && bundle install --verbose --jobs $(grep -c processor /proc/cpuinfo) --retry=5 \
     && bundle config set --local without "assets:test:development:default:production:licenses" \
-    && SSL_CERT_FILE=/opt/system/rubygems-proxy-ca.pem DB=oracle bundle package --no-install \
+    && DB=oracle bundle package --no-install \
     && bundle config set --local without development:test
 
 # install yarn

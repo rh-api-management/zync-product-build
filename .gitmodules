@@ -10,3 +10,4 @@
 [submodule "rh-porta/porta"]
 	path = rh-porta/porta
 	url = https://github.com/3scale/porta
+	branch = 3scale-2.15-stable

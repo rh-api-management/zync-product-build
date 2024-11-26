@@ -47,10 +47,11 @@ RUN yarn --frozen-lockfile --check-files --no-progress \
     && rm -rf node_modules /usr/local/share/gems/cache /usr/local/share/gems/doc
 
 # Generate licenses report file
-RUN LICENSES_REPORT=/root/licenses/3scale-amp-system-container/licenses.xml \
-    && bundle exec license_finder action_items --quiet \
-    && bundle exec license_finder report --quiet --format=xml --save=$LICENSES_REPORT \
-    && [ -s $LICENSES_REPORT ]
+# TODO: check if the SBOM provided by konflux already provides the license info
+#RUN LICENSES_REPORT=/root/licenses/3scale-amp-system-container/licenses.xml \
+#    && bundle exec license_finder action_items --quiet \
+#    && bundle exec license_finder report --quiet --format=xml --save=$LICENSES_REPORT \
+#    && [ -s $LICENSES_REPORT ]
 
 #
 # Generate Manticore Search/Thinking Sphinx configuration file
@@ -107,7 +108,8 @@ WORKDIR $HOME
 COPY --from=builder /opt/system/ .
 COPY --from=builder /usr/local/share/gems /usr/local/share/
 COPY --from=builder /usr/local/bin/bundle* /usr/local/bin
-COPY --from=builder /root/licenses/3scale-amp-system-container/licenses.xml /root/licenses/3scale-amp-system-container/licenses.xml
+# TODO: check if the SBOM provided by konflux already provides the license info
+#COPY --from=builder /root/licenses/3scale-amp-system-container/licenses.xml /root/licenses/3scale-amp-system-container/licenses.xml
 # in RHEL 8 podman-catatonit pulls in too many useless deps so we don't install the RPM directly, on RHEL 9 simply use package `catatonit`
 COPY --from=builder /usr/libexec/catatonit/catatonit /usr/libexec/catatonit/catatonit
 

@@ -38,7 +38,7 @@ RUN set -x \
     && bundle config set --local without development:test
 
 # install yarn
-RUN /opt/system/script/yarn \
+RUN cd /opt/system/script/yarn \
     && npm install --userconfig .npmrc --global yarn@${YARN_VERSION}
 
 RUN yarn --frozen-lockfile --check-files --no-progress \

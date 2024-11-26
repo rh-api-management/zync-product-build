@@ -27,7 +27,7 @@ RUN dnf -y module enable ruby:${RUBY_VERSION} nodejs:16 mysql:8.0 \
 # install bundler
 RUN set -x \
     && BUNDLER_VERSION=$(awk '/BUNDLED WITH/ { getline; print $1 }' Gemfile.lock) \
-    && gem install --no-document bundler:$BUNDLER_VERSION --source $BUNDLER_REPO \
+    && gem install --no-document bundler:$BUNDLER_VERSION \
     && bundle config build.nokogiri --use-system-libraries \
     && bundle config set --local deployment true \
     && bundle config set --local without development:test \

@@ -11,3 +11,7 @@
 	path = rh-porta/porta
 	url = https://github.com/3scale/porta
 	branch = 3scale-2.15-stable
+[submodule "rh-apicast/apicast"]
+	path = rh-apicast/apicast
+	url = https://github.com/3scale/apicast
+	branch = feat/better_build

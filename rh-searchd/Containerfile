@@ -1,0 +1,100 @@
+FROM quay.io/redhat-user-workloads/3scale-prod-tenant/porta@sha256:9bd789cbac9c8951037a1cef7a83a72d6e43e76fd47a9e9d3421398ee867ce54 as porta
+
+FROM registry.access.redhat.com/ubi9:9.5-1731517889 AS builder
+
+# Setup environment and dependencies
+ENV BUILD_PATH=/tmp/manticore_uselessly_very_long_path_to_prevent_rpm_build_issues \
+    CC=clang \
+    CXX=clang++ \
+    COMPILER_PACKAGES=llvm-toolset \
+    # COMPILER_PACKAGES="make automake gcc gcc-c++ kernel-devel" \
+    BUILD_FLAGS="-DUSE_SYSLOG=0 -DWITH_GALERA=0 -DWITH_RE2=0 -DWITH_STEMMER=0 -DWITH_ICU_FORCE_STATIC=0 -DWITH_SSL=1 -DWITH_ZLIB=1 -DWITH_ODBC=0 -DWITH_EXPAT=0 -DWITH_ICONV=1 -DWITH_POSTGRESQL=0 -DWITH_MYSQL=0 -DBUILD_TESTING=0"
+
+COPY columnar /opt/columnar
+COPY manticore $BUILD_PATH
+COPY uni-algo /opt/uni-algo
+COPY nlohmann-json /opt/json
+
+WORKDIR $BUILD_PATH
+SHELL ["/bin/bash", "-x", "-o", "pipefail", "-c"]
+
+RUN dnf install -y --setopt=skip_missing_names_on_install=False,tsflags=nodocs \
+    $COMPILER_PACKAGES \
+    mysql systemd-units git rpm-build \
+    cmake boost-devel openssl-devel zlib-devel libicu-devel bison flex
+
+# prepare sources
+RUN pwd \
+ && git config --global user.email "you@example.com" \
+ && git config --global user.name "Your Name" \
+ && cd /opt/columnar && git init && git add . \
+ && git commit -m 'just a commit message' && cd - \
+ && echo "GIT_REPOSITORY /opt/columnar" > columnar_src.txt \
+ && NLJSON_FILE=build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/$(sed -nEe 's#^.*NLJSON_BUNDLE ".*/nljson-(.*)".*$#\1#p' < cmake/GetNLJSON.cmake) \
+ && UNIALGO_FILE=build/_deps/uni-algo-subbuild/uni-algo-populate-prefix/src/$(sed -nEe 's#^.*UNIALGO_BUNDLE ".*/unialgo-(.*)".*$#\1#p' < cmake/GetUniAlgo.cmake) \
+ && mkdir -p $(dirname $NLJSON_FILE) $(dirname $UNIALGO_FILE) \
+ && tar cvfz $NLJSON_FILE -C /opt/json . \
+ && tar cvfz $UNIALGO_FILE -C /opt/uni-algo . \
+ && sed -i -Ee "s/NLJSON_SRC_MD5 \".+\"/NLJSON_SRC_MD5 \"$(md5sum $NLJSON_FILE | head -c 32)\"/" cmake/GetNLJSON.cmake \
+ && sed -i -Ee "s/UNIALGO_SRC_MD5 \".+\"/UNIALGO_SRC_MD5 \"$(md5sum $UNIALGO_FILE | head -c 32)\"/" cmake/GetUniAlgo.cmake
+
+# Build manticore
+# boost lib in RHEL9 comes dynamic only so enable its use
+RUN sed -i -e 's/Boost_USE_STATIC_LIBS ON/Boost_USE_STATIC_LIBS OFF/' src/CMakeLists.txt && \
+    cd build && \
+    cmake $BUILD_FLAGS .. && \
+    cmake --build . --target package --config RelWithDebInfo
+
+
+FROM registry.access.redhat.com/ubi9-minimal:9.5-1731604394
+
+LABEL summary="3scale API Management platform search daemon." \
+      description="3scale is an API Management Platform suitable \
+                   to manage both internal and external API services. \
+                   This image contains the search daemon  \
+                   used by the main platform to provide search functionality." \
+      io.k8s.description="3scale is an API Management Platform suitable \
+                   to manage both internal and external API services. \
+                   This image contains the search daemon  \
+                   used by the main platform to provide search functionality." \
+      io.k8s.display-name="3scale API manager (searchd)" \
+      io.openshift.expose-services="9306:system" \
+      io.openshift.tags="integration, api management, 3scale, rhamp, developer portal, api documentation, api analytics"
+
+# Labels consumed by Red Hat build service
+LABEL com.redhat.component="3scale-manticore-search-container" \
+      name="3scale-amp2/manticore-rhel9" \
+      maintainer="akostadi@redhat.com" \
+      version="1.0.0"
+
+LABEL org.opencontainers.image.authors="https://issues.redhat.com/browse/THREESCALE" \
+      org.opencontainers.image.title="3scale searchd" \
+      org.opencontainers.image.vendor="Red Hat, Inc." \
+      org.opencontainers.image.url="https://github.com/3scale/searchd" \
+      org.opencontainers.image.documentation="https://github.com/3scale/searchd" \
+      org.opencontainers.image.description="Searchd to be used in a 3scale installation" \
+      org.opencontainers.image.licenses="Apache-2.0"
+      # org.opencontainers.image.version="nightly"
+      # org.opencontainers.image.ref.name="" \
+      # org.opencontainers.image.revision="" \
+      # org.opencontainers.image.created=""
+
+
+COPY --from=builder /tmp/manticore_uselessly_very_long_path_to_prevent_rpm_build_issues/build/*.rpm /tmp/rpms/
+COPY --from=porta /opt/system/config/standalone.sphinx.conf /etc/manticoresearch/manticore.conf
+ENV MANTICORE_RPMS="manticore-converter* manticore-common* manticore-server-core* manticore-server*"
+RUN microdnf install -y --nodocs mysql openssl boost-context boost-filesystem zlib libicu && \
+    cd /tmp/rpms && ls -l && \
+    rpm -iv --excludedocs $MANTICORE_RPMS && \
+    cd - && rm -rf /tmp/rpms && \
+    microdnf clean all && \
+    # TODO: we can update porta image once this is in production \
+    sed -i -e 's#/var/run/sphinx/#/var/run/manticore/#' /etc/manticoresearch/manticore.conf && \
+    mkdir /var/lib/searchd && \
+    chmod g+w /var/lib/searchd /var/run/manticore /var/log/manticore && \
+    chgrp 0 /var/lib/searchd /var/run/manticore /var/log/manticore
+
+WORKDIR /var/lib/manticore
+ENTRYPOINT ["/bin/env", "searchd", "--pidfile", "--config", "/etc/manticoresearch/manticore.conf", "--nodetach"]
+USER 1001
+EXPOSE 9306/tcp

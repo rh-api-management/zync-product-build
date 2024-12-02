@@ -1,4 +1,4 @@
-FROM ${CI_BREW_3SCALE_2_15_RHEL_8_CANDIDATE_3SCALE_AMP_SYSTEM_CONTAINER_TAGGED_URL} as porta
+FROM quay.io/redhat-user-workloads/3scale-prod-tenant/porta@sha256:9bd789cbac9c8951037a1cef7a83a72d6e43e76fd47a9e9d3421398ee867ce54 as porta
 
 FROM registry.access.redhat.com/ubi9:9.5-1731517889 AS builder
 

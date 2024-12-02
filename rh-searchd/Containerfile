@@ -2,11 +2,6 @@ FROM ${CI_BREW_3SCALE_2_15_RHEL_8_CANDIDATE_3SCALE_AMP_SYSTEM_CONTAINER_TAGGED_U
 
 FROM registry.access.redhat.com/ubi9:9.5-1731517889 AS builder
 
-
-# Copy the upstream sources from cachito integration
-COPY $REMOTE_SOURCES $REMOTE_SOURCES_DIR
-RUN find $REMOTE_SOURCES_DIR
-
 # Setup environment and dependencies
 ENV BUILD_PATH=/tmp/manticore_uselessly_very_long_path_to_prevent_rpm_build_issues \
     CC=clang \
@@ -15,8 +10,10 @@ ENV BUILD_PATH=/tmp/manticore_uselessly_very_long_path_to_prevent_rpm_build_issu
     # COMPILER_PACKAGES="make automake gcc gcc-c++ kernel-devel" \
     BUILD_FLAGS="-DUSE_SYSLOG=0 -DWITH_GALERA=0 -DWITH_RE2=0 -DWITH_STEMMER=0 -DWITH_ICU_FORCE_STATIC=0 -DWITH_SSL=1 -DWITH_ZLIB=1 -DWITH_ODBC=0 -DWITH_EXPAT=0 -DWITH_ICONV=1 -DWITH_POSTGRESQL=0 -DWITH_MYSQL=0 -DBUILD_TESTING=0"
 
-RUN mv $REMOTE_SOURCES_DIR/manticoresearch/app $BUILD_PATH && \
-    cat $REMOTE_SOURCES_DIR/json/cachito.env $REMOTE_SOURCES_DIR/uni-algo/cachito.env
+COPY columnar /opt/columnar
+COPY manticore $BUILD_PATH
+COPY uni-algo /opt/uni-algo
+COPY nlohmann-json /opt/json
 
 WORKDIR $BUILD_PATH
 SHELL ["/bin/bash", "-x", "-o", "pipefail", "-c"]
@@ -30,14 +27,14 @@ RUN dnf install -y --setopt=skip_missing_names_on_install=False,tsflags=nodocs \
 RUN pwd \
  && git config --global user.email "you@example.com" \
  && git config --global user.name "Your Name" \
- && cd $REMOTE_SOURCES_DIR/columnar/app && git init && git add . \
+ && cd /opt/columnar && git init && git add . \
  && git commit -m 'just a commit message' && cd - \
- && echo "GIT_REPOSITORY $REMOTE_SOURCES_DIR/columnar/app" > columnar_src.txt \
+ && echo "GIT_REPOSITORY /opt/columnar" > columnar_src.txt \
  && NLJSON_FILE=build/_deps/nlohmann_json-subbuild/nlohmann_json-populate-prefix/src/$(sed -nEe 's#^.*NLJSON_BUNDLE ".*/nljson-(.*)".*$#\1#p' < cmake/GetNLJSON.cmake) \
  && UNIALGO_FILE=build/_deps/uni-algo-subbuild/uni-algo-populate-prefix/src/$(sed -nEe 's#^.*UNIALGO_BUNDLE ".*/unialgo-(.*)".*$#\1#p' < cmake/GetUniAlgo.cmake) \
  && mkdir -p $(dirname $NLJSON_FILE) $(dirname $UNIALGO_FILE) \
- && tar cvfz $NLJSON_FILE -C $REMOTE_SOURCES_DIR/json/app . \
- && tar cvfz $UNIALGO_FILE -C $REMOTE_SOURCES_DIR/uni-algo/app . \
+ && tar cvfz $NLJSON_FILE -C /opt/json . \
+ && tar cvfz $UNIALGO_FILE -C /opt/uni-algo . \
  && sed -i -Ee "s/NLJSON_SRC_MD5 \".+\"/NLJSON_SRC_MD5 \"$(md5sum $NLJSON_FILE | head -c 32)\"/" cmake/GetNLJSON.cmake \
  && sed -i -Ee "s/UNIALGO_SRC_MD5 \".+\"/UNIALGO_SRC_MD5 \"$(md5sum $UNIALGO_FILE | head -c 32)\"/" cmake/GetUniAlgo.cmake
 

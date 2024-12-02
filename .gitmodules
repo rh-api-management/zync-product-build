@@ -15,3 +15,18 @@
 	path = rh-apicast/apicast
 	url = https://github.com/3scale/apicast
 	branch = feat/better_build
+[submodule "rh-searchd/manticore"]
+	path = rh-searchd/manticore
+	url = https://github.com/manticoresoftware/manticoresearch
+	branch = manticore-6.2.12
+[submodule "rh-searchd/columnar"]
+	path = rh-searchd/columnar
+	url = https://github.com/manticoresoftware/columnar
+[submodule "rh-searchd/uni-algo"]
+	path = rh-searchd/uni-algo
+	url = https://github.com/manticoresoftware/uni-algo
+	branch = main
+[submodule "rh-searchd/nlohmann-json"]
+	path = rh-searchd/nlohmann-json
+	url = https://github.com/nlohmann/json
+	branch = develop

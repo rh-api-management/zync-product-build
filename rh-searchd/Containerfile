@@ -3,8 +3,6 @@ FROM ${CI_BREW_3SCALE_2_15_RHEL_8_CANDIDATE_3SCALE_AMP_SYSTEM_CONTAINER_TAGGED_U
 #@follow_tag(registry.redhat.io/ubi9:latest)
 FROM registry.redhat.io/ubi9:9.5-1731517889 AS builder
 
-# TODO: nljson, columnar and maybe manticore stuff for completeness
-COPY licenses.xml /root/licenses/3scale-manticore-search-container/licenses.xml
 
 # Copy the upstream sources from cachito integration
 COPY $REMOTE_SOURCES $REMOTE_SOURCES_DIR

@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8:8.10-1132.1731461736 AS builder
+FROM registry.access.redhat.com/ubi8:8.10-1132.1732635159 AS builder
 
 ENV YARN_MAJOR_VERSION=1 \
     YARN_MINOR_VERSION=22 \
@@ -76,7 +76,7 @@ RUN dnf install -y mysql-server mysql-test \
     && grep -q "rt_field = account_id" "$THINKING_SPHINX_CONFIGURATION_FILE" \
     && kill $(</run/mysqld/mysqld.pid)
 
-FROM registry.access.redhat.com/ubi8:8.10-1132.1731461736 AS prod
+FROM registry.access.redhat.com/ubi8:8.10-1132.1732635159 AS prod
 
 ENV RUBY_MAJOR_VERSION=2 \
     RUBY_MINOR_VERSION=7 \

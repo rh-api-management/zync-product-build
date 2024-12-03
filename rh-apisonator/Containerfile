@@ -19,7 +19,7 @@ COPY drift-detection/detector.sh /detector.sh
 # Check to see if we need to react to any uptream changes
 COPY drift-cache /drift-cache
 WORKDIR /tmp
-COPY apisonator/openshift/distro/ubi/8/Dockerfile .
+COPY rh-apisonator/apisonator/openshift/distro/ubi/8/Dockerfile .
 RUN /detector.sh ./Dockerfile /drift-cache/apisonator/Dockerfile
 
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10-1086
@@ -45,7 +45,7 @@ ENV TZ=:/etc/localtime \
     CONFIG_WORKERS_LOG_FILE=/dev/stdout \
     PUMA_WORKERS=${PUMA_WORKERS}
 
-COPY apisonator ${HOME}/app
+COPY rh-apisonator/apisonator ${HOME}/app
 RUN mkdir -p /opt/ruby
 
 WORKDIR "${HOME}/app"

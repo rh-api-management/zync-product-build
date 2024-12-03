@@ -1,5 +1,5 @@
-[submodule "apisonator"]
-	path = apisonator
+[submodule "rh-apisonator/apisonator"]
+	path = rh-apisonator/apisonator
 	url = https://github.com/3scale/apisonator
 	branch = master
 [submodule "drift-detection"]

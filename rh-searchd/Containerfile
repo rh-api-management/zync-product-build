@@ -10,10 +10,10 @@ ENV BUILD_PATH=/tmp/manticore_uselessly_very_long_path_to_prevent_rpm_build_issu
     # COMPILER_PACKAGES="make automake gcc gcc-c++ kernel-devel" \
     BUILD_FLAGS="-DUSE_SYSLOG=0 -DWITH_GALERA=0 -DWITH_RE2=0 -DWITH_STEMMER=0 -DWITH_ICU_FORCE_STATIC=0 -DWITH_SSL=1 -DWITH_ZLIB=1 -DWITH_ODBC=0 -DWITH_EXPAT=0 -DWITH_ICONV=1 -DWITH_POSTGRESQL=0 -DWITH_MYSQL=0 -DBUILD_TESTING=0"
 
-COPY columnar /opt/columnar
-COPY manticore $BUILD_PATH
-COPY uni-algo /opt/uni-algo
-COPY nlohmann-json /opt/json
+COPY rh-searchd/columnar /opt/columnar
+COPY rh-searchd/manticore $BUILD_PATH
+COPY rh-searchd/uni-algo /opt/uni-algo
+COPY rh-searchd/nlohmann-json /opt/json
 
 WORKDIR $BUILD_PATH
 SHELL ["/bin/bash", "-x", "-o", "pipefail", "-c"]

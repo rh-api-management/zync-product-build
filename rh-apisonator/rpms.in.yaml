@@ -1,0 +1,25 @@
+contentOrigin:
+  repofiles:
+    - ./ubi.repo
+moduleEnable:
+  - ruby:3.3
+arches:
+  - aarch64
+  - x86_64
+  - ppc64le
+  - s390x
+packages:
+  - automake
+  - autoconf
+  - file
+  - findutils
+  - git
+  - gcc
+  - libtool
+  - make
+  - openssl-devel
+  - patch
+  - redhat-rpm-config
+  - ruby-devel
+  - ruby
+  - tar

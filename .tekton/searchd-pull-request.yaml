@@ -7,8 +7,15 @@ metadata:
     build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "main"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "main" &&
+      (".tekton/searchd-pull-request.yaml".pathChanged() ||
+      ".tekton/searchd-push.yaml".pathChanged() ||
+      "rh-searchd/***".pathChanged() ||
+      "drift-cache/searchd/***".pathChanged() ||
+      "rh-searchd/manticore".pathChanged() ||
+      "rh-searchd/uni-algo".pathChanged() ||
+      "rh-searchd/nlohmann-json".pathChanged() ||
+      "rh-searchd/columnar".pathChanged())
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: threescale

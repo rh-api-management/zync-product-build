@@ -27,11 +27,11 @@ spec:
   - name: image-expires-after
     value: 5d
   - name: dockerfile
-    value: Containerfile
+    value: rh-apisonator/Containerfile
   - name: prefetch-input
     value:
-      - {"type": "rpm", "path": "."}
-      - {"type": "bundler", "path": "apisonator/"}
+      - {"type": "rpm", "path": "rh-apisonator"}
+      - {"type": "bundler", "path": "rh-apisonator/apisonator/"}
   - name: hermetic
     value: "true"
   pipelineSpec:

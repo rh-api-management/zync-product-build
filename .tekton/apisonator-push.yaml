@@ -24,11 +24,11 @@ spec:
   - name: output-image
     value: quay.io/redhat-user-workloads/3scale-prod-tenant/apisonator:{{revision}}
   - name: dockerfile
-    value: Containerfile
+    value: rh-apisonator/Containerfile
   - name: prefetch-input
     value:
-      - {"type": "rpm", "path": "."}
-      - {"type": "bundler", "path": "apisonator/"}
+      - {"type": "rpm", "path": "rh-apisonator"}
+      - {"type": "bundler", "path": "rh-apisonator/apisonator/"}
   - name: hermetic
     value: "true"
   pipelineSpec:

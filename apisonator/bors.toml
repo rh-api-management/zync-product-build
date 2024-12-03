@@ -1,3 +1,0 @@
-status = ["workflow"]
-pr_status = ["workflow"]
-delete_merged_branches = true

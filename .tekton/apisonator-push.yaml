@@ -5,9 +5,15 @@ metadata:
     build.appstudio.openshift.io/repo: https://github.com/rh-api-management/rh-3scale?rev={{revision}}
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    build.appstudio.openshift.io/build-nudge-files: "bundle-hack/update_bundle.sh"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "main"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "main" &&
+      (".tekton/apisonator-pull-request.yaml".pathChanged() ||
+      ".tekton/apisonator-push.yaml".pathChanged() ||
+      "rh-apisonator/***".pathChanged() ||
+      "drift-cache/apisonator/***".pathChanged() ||
+      "rh-apisonator/apisonator".pathChanged())
+
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: threescale
@@ -28,6 +34,12 @@ spec:
     - linux/x86_64
   - name: dockerfile
     value: rh-apisonator/Containerfile
+  - name: prefetch-input
+    value:
+      - {"type": "rpm", "path": "rh-apisonator"}
+      - {"type": "bundler", "path": "rh-apisonator/apisonator/"}
+  - name: hermetic
+    value: "true"
   pipelineSpec:
     description: |
       This pipeline is ideal for building multi-arch container images from a Containerfile while maintaining trust after pipeline customization.
@@ -181,6 +193,8 @@ spec:
         value: $(params.output-image).prefetch
       - name: ociArtifactExpiresAfter
         value: $(params.image-expires-after)
+      - name: dev-package-managers
+        value: "true"
       runAfter:
       - clone-repository
       taskRef:
@@ -229,6 +243,9 @@ spec:
         value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
       - name: IMAGE_APPEND_PLATFORM
         value: "true"
+      # prevent this build from using the activation key - otherwise buildah tries to enable the rhel8 repos, while only the ubi8 repos have been prefetched (and as this is a hermetic build - that fails)
+      - name: ACTIVATION_KEY
+        value: "dont-need-no-key"
       runAfter:
       - prefetch-dependencies
       taskRef:

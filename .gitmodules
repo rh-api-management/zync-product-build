@@ -4,21 +4,24 @@
 [submodule "rh-apisonator/apisonator"]
 	path = rh-apisonator/apisonator
 	url = https://github.com/3scale/apisonator
-	branch = master
+	branch = 3scale-2.16-stable
 [submodule "rh-zync/zync"]
 	path = rh-zync/zync
 	url = https://github.com/3scale/zync
+	branch = 3scale-2.16-stable
 [submodule "rh-toolbox/toolbox"]
 	path = rh-toolbox/toolbox
 	url = https://github.com/3scale/3scale_toolbox
+	branch = 3scale-2.16-stable
 [submodule "rh-porta/porta"]
 	path = rh-porta/porta
 	url = https://github.com/3scale/porta
-	branch = 3scale-2.15-stable
+	branch = 3scale-2.16-stable
 [submodule "rh-apicast/apicast"]
 	path = rh-apicast/apicast
 	url = https://github.com/3scale/apicast
 	branch = feat/better_build
+
 [submodule "rh-searchd/manticore"]
 	path = rh-searchd/manticore
 	url = https://github.com/manticoresoftware/manticoresearch

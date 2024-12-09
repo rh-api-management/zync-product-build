@@ -1,0 +1,152 @@
+---
+lockfileVersion: 1
+lockfileVendor: redhat
+arches:
+- arch: aarch64
+  packages:
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/appstream/os/Packages/p/postgresql-13.18-1.el9_5.aarch64.rpm
+    repoid: ubi-9-appstream-rpms
+    size: 1654784
+    checksum: sha256:233282473aa9a112d45a0ca7fc4e1c20f4917ccf766a10974c3413136af146a2
+    name: postgresql
+    evr: 13.18-1.el9_5
+    sourcerpm: postgresql-13.18-1.el9_5.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/appstream/os/Packages/p/postgresql-private-libs-13.18-1.el9_5.aarch64.rpm
+    repoid: ubi-9-appstream-rpms
+    size: 139109
+    checksum: sha256:05d3a29d20f2661abd1222a1734a83565e9812939c64d4626d17cc0a1f6866af
+    name: postgresql-private-libs
+    evr: 13.18-1.el9_5
+    sourcerpm: postgresql-13.18-1.el9_5.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/baseos/os/Packages/s/shared-mime-info-2.1-5.el9.aarch64.rpm
+    repoid: ubi-9-baseos-rpms
+    size: 573413
+    checksum: sha256:58f0f28533b8368362da0fd44d426981dc716a6652b83c26945f58084ba8e68e
+    name: shared-mime-info
+    evr: 2.1-5.el9
+    sourcerpm: shared-mime-info-2.1-5.el9.src.rpm
+  source:
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/appstream/source/SRPMS/Packages/p/postgresql-13.18-1.el9_5.src.rpm
+    repoid: ubi-9-appstream-source
+    size: 51153025
+    checksum: sha256:2afa51569ccdb736085063cfcbea41f8cf9692b61caa66924395b21d457dbf3a
+    name: postgresql
+    evr: 13.18-1.el9_5
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/aarch64/baseos/source/SRPMS/Packages/s/shared-mime-info-2.1-5.el9.src.rpm
+    repoid: ubi-9-baseos-source
+    size: 5257989
+    checksum: sha256:93b45d557d2958d316a6ee4645a9fdccb824cad2133c451ba22221fc933e6f9f
+    name: shared-mime-info
+    evr: 2.1-5.el9
+  module_metadata: []
+- arch: ppc64le
+  packages:
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/appstream/os/Packages/p/postgresql-13.18-1.el9_5.ppc64le.rpm
+    repoid: ubi-9-appstream-rpms
+    size: 1707284
+    checksum: sha256:2366e480b5985b42f28c68370e15c0da06433ea81be1f4b7fce6706994126d42
+    name: postgresql
+    evr: 13.18-1.el9_5
+    sourcerpm: postgresql-13.18-1.el9_5.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/appstream/os/Packages/p/postgresql-private-libs-13.18-1.el9_5.ppc64le.rpm
+    repoid: ubi-9-appstream-rpms
+    size: 158589
+    checksum: sha256:c7948609c4a2e8778ee730a1ce0261aa38264ad0486bfe639d172e86ded8a083
+    name: postgresql-private-libs
+    evr: 13.18-1.el9_5
+    sourcerpm: postgresql-13.18-1.el9_5.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/baseos/os/Packages/s/shared-mime-info-2.1-5.el9.ppc64le.rpm
+    repoid: ubi-9-baseos-rpms
+    size: 578051
+    checksum: sha256:462d65bcca130a007d45e4579a81b9490f3e99ae36d1c5be46acc789ee54ef27
+    name: shared-mime-info
+    evr: 2.1-5.el9
+    sourcerpm: shared-mime-info-2.1-5.el9.src.rpm
+  source:
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/appstream/source/SRPMS/Packages/p/postgresql-13.18-1.el9_5.src.rpm
+    repoid: ubi-9-appstream-source
+    size: 51153025
+    checksum: sha256:2afa51569ccdb736085063cfcbea41f8cf9692b61caa66924395b21d457dbf3a
+    name: postgresql
+    evr: 13.18-1.el9_5
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/ppc64le/baseos/source/SRPMS/Packages/s/shared-mime-info-2.1-5.el9.src.rpm
+    repoid: ubi-9-baseos-source
+    size: 5257989
+    checksum: sha256:93b45d557d2958d316a6ee4645a9fdccb824cad2133c451ba22221fc933e6f9f
+    name: shared-mime-info
+    evr: 2.1-5.el9
+  module_metadata: []
+- arch: s390x
+  packages:
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/appstream/os/Packages/p/postgresql-13.18-1.el9_5.s390x.rpm
+    repoid: ubi-9-appstream-rpms
+    size: 1667550
+    checksum: sha256:d014b7613ae523305e098f68d7e9a0c48b1932fe25b361fcb08b50b4ca53ca6a
+    name: postgresql
+    evr: 13.18-1.el9_5
+    sourcerpm: postgresql-13.18-1.el9_5.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/appstream/os/Packages/p/postgresql-private-libs-13.18-1.el9_5.s390x.rpm
+    repoid: ubi-9-appstream-rpms
+    size: 138980
+    checksum: sha256:c7a7a54a4c9962e8dd485e936a1016087f5898c0d5e5eb9ab063427840da2f23
+    name: postgresql-private-libs
+    evr: 13.18-1.el9_5
+    sourcerpm: postgresql-13.18-1.el9_5.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/baseos/os/Packages/s/shared-mime-info-2.1-5.el9.s390x.rpm
+    repoid: ubi-9-baseos-rpms
+    size: 573253
+    checksum: sha256:0da26634141fdadb305209ba6b48b67d1458130752e3fc673010cb9ee2b78bcf
+    name: shared-mime-info
+    evr: 2.1-5.el9
+    sourcerpm: shared-mime-info-2.1-5.el9.src.rpm
+  source:
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/appstream/source/SRPMS/Packages/p/postgresql-13.18-1.el9_5.src.rpm
+    repoid: ubi-9-appstream-source
+    size: 51153025
+    checksum: sha256:2afa51569ccdb736085063cfcbea41f8cf9692b61caa66924395b21d457dbf3a
+    name: postgresql
+    evr: 13.18-1.el9_5
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/s390x/baseos/source/SRPMS/Packages/s/shared-mime-info-2.1-5.el9.src.rpm
+    repoid: ubi-9-baseos-source
+    size: 5257989
+    checksum: sha256:93b45d557d2958d316a6ee4645a9fdccb824cad2133c451ba22221fc933e6f9f
+    name: shared-mime-info
+    evr: 2.1-5.el9
+  module_metadata: []
+- arch: x86_64
+  packages:
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/appstream/os/Packages/p/postgresql-13.18-1.el9_5.x86_64.rpm
+    repoid: ubi-9-appstream-rpms
+    size: 1667861
+    checksum: sha256:e9bdaf1176856cf4057d75fb34b43ce6531d66160421eea57b5fb84dc8b5be37
+    name: postgresql
+    evr: 13.18-1.el9_5
+    sourcerpm: postgresql-13.18-1.el9_5.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/appstream/os/Packages/p/postgresql-private-libs-13.18-1.el9_5.x86_64.rpm
+    repoid: ubi-9-appstream-rpms
+    size: 141845
+    checksum: sha256:02f4a30e1677aaeca070792e879bd6e025a694d8a13ac25a54a1c3f11e1ae527
+    name: postgresql-private-libs
+    evr: 13.18-1.el9_5
+    sourcerpm: postgresql-13.18-1.el9_5.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/baseos/os/Packages/s/shared-mime-info-2.1-5.el9.x86_64.rpm
+    repoid: ubi-9-baseos-rpms
+    size: 573978
+    checksum: sha256:1331732f85da72b687fbe4ef2115ddf775fb78adf18c8535979cb252d768f60e
+    name: shared-mime-info
+    evr: 2.1-5.el9
+    sourcerpm: shared-mime-info-2.1-5.el9.src.rpm
+  source:
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/appstream/source/SRPMS/Packages/p/postgresql-13.18-1.el9_5.src.rpm
+    repoid: ubi-9-appstream-source
+    size: 51153025
+    checksum: sha256:2afa51569ccdb736085063cfcbea41f8cf9692b61caa66924395b21d457dbf3a
+    name: postgresql
+    evr: 13.18-1.el9_5
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/baseos/source/SRPMS/Packages/s/shared-mime-info-2.1-5.el9.src.rpm
+    repoid: ubi-9-baseos-source
+    size: 5257989
+    checksum: sha256:93b45d557d2958d316a6ee4645a9fdccb824cad2133c451ba22221fc933e6f9f
+    name: shared-mime-info
+    evr: 2.1-5.el9
+  module_metadata: []

@@ -35,9 +35,13 @@
     "dockerfile": {
       "postUpgradeTasks": {
         "commands": [
-          "rpm-lockfile-prototype -f rh-apisonator/Containerfile rh-apisonator/rpms.in.yaml"
+          "rpm-lockfile-prototype -f rh-apisonator/Containerfile rh-apisonator/rpms.in.yaml",
+          "rpm-lockfile-prototype -f rh-zync/Containerfile rh-zync/rpms.in.yaml"
         ],
-        "fileFilters": ["rh-apisonator/rpms.lock.yaml"]
+        "fileFilters": [
+          "rh-apisonator/rpms.lock.yaml",
+          "rh-zync/rpms.lock.yaml"
+        ]
       }
     }
 }

@@ -34,6 +34,12 @@ spec:
     - linux/x86_64
   - name: dockerfile
     value: rh-porta/Containerfile
+  - name: prefetch-input
+    value:
+      - {"type": "rpm", "path": "rh-porta"}
+      - {"type": "bundler", "path": "rh-porta/porta/"}
+  - name: hermetic
+    value: "true"
   pipelineSpec:
     description: |
       This pipeline is ideal for building multi-arch container images from a Containerfile while maintaining trust after pipeline customization.
@@ -187,6 +193,8 @@ spec:
         value: $(params.output-image).prefetch
       - name: ociArtifactExpiresAfter
         value: $(params.image-expires-after)
+      - name: dev-package-managers
+        value: "true"
       runAfter:
       - clone-repository
       taskRef:

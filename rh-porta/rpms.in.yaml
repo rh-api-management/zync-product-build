@@ -1,0 +1,43 @@
+contentOrigin:
+  repofiles:
+    - ./ubi.repo
+moduleEnable:
+  - ruby:2.7
+  - nodejs:16
+  - mysql:8.0
+arches:
+  - aarch64
+  - x86_64
+  - ppc64le
+  - s390x
+packages:
+  - automake
+  - file
+  - gcc
+  - gcc-c++
+  - gd
+  - gd-devel
+  - git
+  - jemalloc
+  - liberation-sans-fonts
+  - libpq
+  - libpq-devel
+  - libxml2
+  - libxml2-devel
+  - libxslt
+  - libxslt-devel
+  - make
+  - mysql
+  - mysql-devel
+  - mysql-libs
+  - mysql-server
+  - mysql-test
+  - nodejs
+  - podman-catatonit
+  - postgresql
+  - redhat-rpm-config
+  - ruby
+  - ruby-devel
+  - rubygem-irb
+  - rubygem-rdoc
+  - shared-mime-info

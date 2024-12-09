@@ -15,6 +15,7 @@ LABEL summary="Zync - the sync tool" \
       description="Zync is going to take your 3scale data \
                    and push it somewhere else, reliably. \
                    Offers only one directional sync (from 3scale to other systems)." \
+      vendor="Red Hat, Inc." \
       io.k8s.display-name="Zync" \
       io.k8s.description="Zync is going to take your 3scale data \
                    and push it somewhere else, reliably. \

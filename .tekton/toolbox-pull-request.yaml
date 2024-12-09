@@ -35,6 +35,11 @@ spec:
     - linux/x86_64
   - name: dockerfile
     value: rh-toolbox/Containerfile
+  - name: prefetch-input
+    value:
+      - {"type": "bundler", "path": "rh-toolbox/toolbox/"}
+  - name: hermetic
+    value: "true"
   pipelineSpec:
     description: |
       This pipeline is ideal for building multi-arch container images from a Containerfile while maintaining trust after pipeline customization.
@@ -236,6 +241,9 @@ spec:
         value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
       - name: IMAGE_APPEND_PLATFORM
         value: "true"
+      # prevent this build from using the activation key - otherwise buildah tries to enable the rhel8 repos, while only the ubi8 repos have been prefetched (and as this is a hermetic build - that fails)
+      - name: ACTIVATION_KEY
+        value: "dont-need-no-key"
       runAfter:
       - prefetch-dependencies
       taskRef:

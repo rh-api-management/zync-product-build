@@ -36,6 +36,11 @@ spec:
     - linux/x86_64
   - name: dockerfile
     value: rh-searchd/Containerfile
+  - name: prefetch-input
+    value:
+      - {"type": "rpm", "path": "rh-searchd"}
+  - name: hermetic
+    value: "true"
   pipelineSpec:
     description: |
       This pipeline is ideal for building multi-arch container images from a Containerfile while maintaining trust after pipeline customization.
@@ -189,6 +194,10 @@ spec:
         value: $(params.output-image).prefetch
       - name: ociArtifactExpiresAfter
         value: $(params.image-expires-after)
+      - name: dev-package-managers
+        value: "true"
+      - name: ACTIVATION_KEY
+        value: "activation-key"
       runAfter:
       - clone-repository
       taskRef:
@@ -237,6 +246,8 @@ spec:
         value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
       - name: IMAGE_APPEND_PLATFORM
         value: "true"
+      - name: ACTIVATION_KEY
+        value: "activation-key"
       runAfter:
       - prefetch-dependencies
       taskRef:

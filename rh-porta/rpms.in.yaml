@@ -1,6 +1,7 @@
 contentOrigin:
   repofiles:
     - ./ubi.repo
+    - ./redhat.repo
 moduleEnable:
   - ruby:2.7
   - nodejs:16

@@ -7,7 +7,7 @@ moduleEnable:
   - nodejs:16
   - mysql:8.0
 arches:
-  - aarch64
+#  - aarch64 # for aarch64 support we are missing the jemalloc rpm. We seem to have everything else, but there is no `rh-ocs-4-for-rhel-8-aarch64-rpms`
   - x86_64
   - ppc64le
   - s390x

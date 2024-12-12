@@ -246,6 +246,8 @@ spec:
         value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
       - name: IMAGE_APPEND_PLATFORM
         value: "true"
+      - name: ACTIVATION_KEY
+        value: "activation-key"
       runAfter:
       - prefetch-dependencies
       taskRef:

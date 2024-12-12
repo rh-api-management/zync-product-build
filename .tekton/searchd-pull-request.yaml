@@ -249,7 +249,7 @@ spec:
       - name: IMAGE_APPEND_PLATFORM
         value: "true"
       - name: ACTIVATION_KEY
-        value: "activation-key"
+        value: "bogus-secret"
       runAfter:
       - prefetch-dependencies
       taskRef:

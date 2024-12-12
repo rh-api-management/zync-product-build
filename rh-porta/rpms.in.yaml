@@ -13,6 +13,7 @@ arches:
   - s390x
 packages:
   - automake
+  - 'dnf-command(download)'
   - file
   - gcc
   - gcc-c++

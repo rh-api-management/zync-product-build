@@ -900,6 +900,13 @@ arches:
     name: diffutils
     evr: 3.6-6.el8
     sourcerpm: diffutils-3.6-6.el8.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/baseos/os/Packages/d/dnf-plugins-core-4.0.21-25.el8.noarch.rpm
+    repoid: ubi-8-baseos-rpms
+    size: 78452
+    checksum: sha256:6ec21b87b52f870ecdf4d95d221252c83ce064c5f9d3042cba19531c891d6aff
+    name: dnf-plugins-core
+    evr: 4.0.21-25.el8
+    sourcerpm: dnf-plugins-core-4.0.21-25.el8.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/baseos/os/Packages/e/emacs-filesystem-26.1-12.el8_10.noarch.rpm
     repoid: ubi-8-baseos-rpms
     size: 72144
@@ -2361,6 +2368,12 @@ arches:
     checksum: sha256:1308e782ad4f9b17a5cbbac9734be496948db857de7458b3388645bf1786892d
     name: diffutils
     evr: 3.6-6.el8
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/baseos/source/SRPMS/Packages/d/dnf-plugins-core-4.0.21-25.el8.src.rpm
+    repoid: ubi-8-baseos-source
+    size: 487222
+    checksum: sha256:c8121dbd6ab84a13cc51a226fb3bea19f2b50efed447cb4fa60685f9e9ec26b4
+    name: dnf-plugins-core
+    evr: 4.0.21-25.el8
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/baseos/source/SRPMS/Packages/e/e2fsprogs-1.45.6-5.el8.src.rpm
     repoid: ubi-8-baseos-source
     size: 5675423
@@ -2944,14 +2957,14 @@ arches:
     name: postgresql
     evr: 10.23-4.module+el8.9.0+21317+d2c6bf8a
   module_metadata:
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/appstream/os/repodata/675f9065418f3ccba38c47372579920a495aa002291652f3879edd20bbdc7694-modules.yaml.gz
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/ppc64le/appstream/os/repodata/e4c9eed87c1df028df4533e72a9dbf6d429886c7cf3a9a3f7890b13c54120e62-modules.yaml.gz
     repoid: ubi-8-appstream-rpms
-    size: 56593
-    checksum: sha256:675f9065418f3ccba38c47372579920a495aa002291652f3879edd20bbdc7694
-  - url: https://cdn.redhat.com/content/dist/rhel8/8/ppc64le/appstream/os/repodata/79a3de8df479d7037e7ff02d4e18ec1b3794337ad4f50f323c616b83bccf85bf-modules.yaml.gz
+    size: 57039
+    checksum: sha256:e4c9eed87c1df028df4533e72a9dbf6d429886c7cf3a9a3f7890b13c54120e62
+  - url: https://cdn.redhat.com/content/dist/rhel8/8/ppc64le/appstream/os/repodata/a7133c7a413c3a5dd2abec90d2944f3bccb056969f67e80a91f6112dfd43dfef-modules.yaml.gz
     repoid: rhel-8-for-appstream-rpms
     size: 681626
-    checksum: sha256:79a3de8df479d7037e7ff02d4e18ec1b3794337ad4f50f323c616b83bccf85bf
+    checksum: sha256:a7133c7a413c3a5dd2abec90d2944f3bccb056969f67e80a91f6112dfd43dfef
 - arch: s390x
   packages:
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/appstream/os/Packages/a/annobin-11.13-2.el8.s390x.rpm
@@ -3850,6 +3863,13 @@ arches:
     name: diffutils
     evr: 3.6-6.el8
     sourcerpm: diffutils-3.6-6.el8.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/baseos/os/Packages/d/dnf-plugins-core-4.0.21-25.el8.noarch.rpm
+    repoid: ubi-8-baseos-rpms
+    size: 78452
+    checksum: sha256:6ec21b87b52f870ecdf4d95d221252c83ce064c5f9d3042cba19531c891d6aff
+    name: dnf-plugins-core
+    evr: 4.0.21-25.el8
+    sourcerpm: dnf-plugins-core-4.0.21-25.el8.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/baseos/os/Packages/e/emacs-filesystem-26.1-12.el8_10.noarch.rpm
     repoid: ubi-8-baseos-rpms
     size: 72144
@@ -5304,6 +5324,12 @@ arches:
     checksum: sha256:1308e782ad4f9b17a5cbbac9734be496948db857de7458b3388645bf1786892d
     name: diffutils
     evr: 3.6-6.el8
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/baseos/source/SRPMS/Packages/d/dnf-plugins-core-4.0.21-25.el8.src.rpm
+    repoid: ubi-8-baseos-source
+    size: 487222
+    checksum: sha256:c8121dbd6ab84a13cc51a226fb3bea19f2b50efed447cb4fa60685f9e9ec26b4
+    name: dnf-plugins-core
+    evr: 4.0.21-25.el8
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/s390x/baseos/source/SRPMS/Packages/e/e2fsprogs-1.45.6-5.el8.src.rpm
     repoid: ubi-8-baseos-source
     size: 5675423
@@ -5885,10 +5911,10 @@ arches:
     repoid: ubi-8-appstream-rpms
     size: 55539
     checksum: sha256:f1126dbb4a23915aa2cbf07625b7f4a5ed7dbbc26e29d7baaa7b31c1df46415c
-  - url: https://cdn.redhat.com/content/dist/rhel8/8/s390x/appstream/os/repodata/e3451cf101e846a8fb47a1380d51d8922f07b801a7a45388fa7340fd17c89d3a-modules.yaml.gz
+  - url: https://cdn.redhat.com/content/dist/rhel8/8/s390x/appstream/os/repodata/fc2c6458331aaf6fb48c78f9d841c28f91af1ae4c9d18956b61325edcd15e3dd-modules.yaml.gz
     repoid: rhel-8-for-appstream-rpms
     size: 683718
-    checksum: sha256:e3451cf101e846a8fb47a1380d51d8922f07b801a7a45388fa7340fd17c89d3a
+    checksum: sha256:fc2c6458331aaf6fb48c78f9d841c28f91af1ae4c9d18956b61325edcd15e3dd
 - arch: x86_64
   packages:
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/Packages/a/annobin-11.13-2.el8.x86_64.rpm
@@ -6787,6 +6813,13 @@ arches:
     name: diffutils
     evr: 3.6-6.el8
     sourcerpm: diffutils-3.6-6.el8.src.rpm
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/baseos/os/Packages/d/dnf-plugins-core-4.0.21-25.el8.noarch.rpm
+    repoid: ubi-8-baseos-rpms
+    size: 78452
+    checksum: sha256:6ec21b87b52f870ecdf4d95d221252c83ce064c5f9d3042cba19531c891d6aff
+    name: dnf-plugins-core
+    evr: 4.0.21-25.el8
+    sourcerpm: dnf-plugins-core-4.0.21-25.el8.src.rpm
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/baseos/os/Packages/e/emacs-filesystem-26.1-12.el8_10.noarch.rpm
     repoid: ubi-8-baseos-rpms
     size: 72144
@@ -8227,6 +8260,12 @@ arches:
     checksum: sha256:1308e782ad4f9b17a5cbbac9734be496948db857de7458b3388645bf1786892d
     name: diffutils
     evr: 3.6-6.el8
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/baseos/source/SRPMS/Packages/d/dnf-plugins-core-4.0.21-25.el8.src.rpm
+    repoid: ubi-8-baseos-source
+    size: 487222
+    checksum: sha256:c8121dbd6ab84a13cc51a226fb3bea19f2b50efed447cb4fa60685f9e9ec26b4
+    name: dnf-plugins-core
+    evr: 4.0.21-25.el8
   - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/baseos/source/SRPMS/Packages/e/e2fsprogs-1.45.6-5.el8.src.rpm
     repoid: ubi-8-baseos-source
     size: 5675423
@@ -8810,11 +8849,11 @@ arches:
     name: postgresql
     evr: 10.23-4.module+el8.9.0+21317+d2c6bf8a
   module_metadata:
-  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/repodata/06cef8bae0fd5d478ba8d9110597425ecdac4ddb661c6d894f6a7bc7e17acce3-modules.yaml.gz
+  - url: https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi8/8/x86_64/appstream/os/repodata/e03b0241e63ed6f7df16b5c47f1fad3b155a3c034334eea5c5f8d4be697614e4-modules.yaml.gz
     repoid: ubi-8-appstream-rpms
-    size: 59732
-    checksum: sha256:06cef8bae0fd5d478ba8d9110597425ecdac4ddb661c6d894f6a7bc7e17acce3
-  - url: https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/repodata/04c1e0f425c2f0aea39b02a59d06f68ad23ee82c35dfdc31f7482212b4ce34b0-modules.yaml.gz
+    size: 59765
+    checksum: sha256:e03b0241e63ed6f7df16b5c47f1fad3b155a3c034334eea5c5f8d4be697614e4
+  - url: https://cdn.redhat.com/content/dist/rhel8/8/x86_64/appstream/os/repodata/aa5c65b56fe2cbeed9599ef33bff8aba8f8c1b9ec68b1b7d872002d9eb74c3f5-modules.yaml.gz
     repoid: rhel-8-for-appstream-rpms
     size: 707162
-    checksum: sha256:04c1e0f425c2f0aea39b02a59d06f68ad23ee82c35dfdc31f7482212b4ce34b0
+    checksum: sha256:aa5c65b56fe2cbeed9599ef33bff8aba8f8c1b9ec68b1b7d872002d9eb74c3f5

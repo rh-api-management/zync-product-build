@@ -18,8 +18,7 @@ COPY rh-searchd/nlohmann-json /opt/json
 WORKDIR $BUILD_PATH
 SHELL ["/bin/bash", "-x", "-o", "pipefail", "-c"]
 
-RUN subscription-manager refresh && \
-    dnf install -y --setopt=skip_missing_names_on_install=False,tsflags=nodocs \
+RUN dnf install -y --setopt=skip_missing_names_on_install=False,tsflags=nodocs \
     $COMPILER_PACKAGES \
     mysql systemd-units git rpm-build \
     cmake boost-devel openssl-devel zlib-devel libicu-devel bison flex

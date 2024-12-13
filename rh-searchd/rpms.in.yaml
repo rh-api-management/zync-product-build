@@ -1,0 +1,28 @@
+contentOrigin:
+  repofiles:
+    - ./ubi.repo
+    - ./redhat.repo
+arches:
+  - aarch64
+  - x86_64
+  - ppc64le
+  - s390x
+packages:
+  - bison
+  - boost-context
+  - boost-devel
+  - boost-filesystem
+  - cmake
+  - flex
+  - git
+  - libicu
+  - libicu-devel
+  - llvm-toolset
+  - mysql
+  - mysql
+  - openssl
+  - openssl-devel
+  - rpm-build
+  - systemd-units
+  - zlib
+  - zlib-devel

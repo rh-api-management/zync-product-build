@@ -21,11 +21,6 @@
         "matchUpdateTypes": ["patch"],
         "matchPackageNames": "registry.access.redhat.com/ubi8/ubi-minimal",
         "automerge": true
-      },
-      {
-        "matchManagers": ["tekton"],
-        "automerge": true,
-        "automergeType": "branch"
       }
     ],
     "lockFileMaintenance": {

@@ -46,7 +46,7 @@ RUN sed -i -e 's/Boost_USE_STATIC_LIBS ON/Boost_USE_STATIC_LIBS OFF/' src/CMakeL
     cmake --build . --target package --config RelWithDebInfo
 
 
-FROM registry.access.redhat.com/ubi9-minimal:9.5-1731604394
+FROM registry.access.redhat.com/ubi9-minimal:9.5-1736404155
 
 LABEL summary="3scale API Management platform search daemon." \
       description="3scale is an API Management Platform suitable \

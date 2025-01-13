@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/ruby-31:1-1734609945 as drift-detectorist
+FROM registry.access.redhat.com/ubi9/ruby-31:1-1736427235 as drift-detectorist
 
 # Attempt to detect Drift in files that have changed upstream and need to be updated for the product build.
 USER 0
@@ -9,7 +9,7 @@ WORKDIR /tmp
 COPY rh-zync/zync/Dockerfile .
 RUN /detector.sh ./Dockerfile /drift-cache/zync/Dockerfile
 
-FROM registry.access.redhat.com/ubi9/ruby-31:1-1734609945
+FROM registry.access.redhat.com/ubi9/ruby-31:1-1736427235
 
 LABEL summary="Zync - the sync tool" \
       description="Zync is going to take your 3scale data \

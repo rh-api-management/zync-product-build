@@ -1,0 +1,29 @@
+APIcast is an API gateway to be used together with Red Hat 3scale. This Operator supports standalone deployment of the gateway as opposed to the built-in APIcast as part of a 3scale installation.
+
+### Supported Features
+* **Installer** A way to install an APIcast gateway instance on Kubernetes
+* **Upgrade** Upgrade from previously installed APIcast gateway instance
+* **Reconcilliation** Tunable CRD parameters after the APIcast gateway is installed
+
+### Upgrading your installation
+The APIcast Operator understands how to run and upgrade between a set of APIcast versions.
+See [the upgrade guide](https://github.com/3scale/apicast-operator) for more information.
+
+### Documentation
+Documentation can be found on our [website](https://access.redhat.com/documentation/en-us/red_hat_3scale_api_management/2.12/html/installing_3scale/installing-apicast#deploying-apicast-gateway-self-managed-operator).
+
+### Getting help
+If you encounter any issues while using operator, you can create an issue on our [website](https://github.com/3scale/apicast-operator) for bugs, enhancements, or other requests.
+
+### Contributing
+You can contribute by:
+
+* Raising any issues you find using APIcast Operator
+* Fixing issues by opening [Pull Requests](https://github.com/3scale/apicast-operator/pulls)
+* Improving [documentation](https://github.com/3scale/apicast-operator)
+* Talking about APIcast Operator
+
+All bugs, tasks or enhancements are tracked as [GitHub issues](https://github.com/3scale/apicast-operator/issues).
+
+### License
+APIcast Operator is licensed under the [Apache 2.0 license](https://github.com/3scale/apicast-operator/blob/master/LICENSE)

@@ -7,18 +7,18 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "main" &&
-      (".tekton/multi-arch-build-pipeline.yaml".pathChanged() ||
-      ".tekton/apicast-operator-pull-request.yaml".pathChanged() ||
-      ".tekton/apicast-operator-push.yaml".pathChanged() ||
-      "rh-apicast-operator/Containerfile.apicast-operator".pathChanged() ||
-      "rh-apicast-operator/apicast-operator".pathChanged())
-
+      (".tekton/single-arch-build-pipeline.yaml".pathChanged() ||
+      ".tekton/apicast-operator-bundle-pull-request.yaml".pathChanged() ||
+      ".tekton/apicast-operator-bundle-push.yaml".pathChanged() ||
+      "rh-apicast-operator/Containerfile.apicast-operator-bundle".pathChanged() ||
+      "rh-apicast-operator/apicast-operator".pathChanged() ||
+      "rh-apicast-operator/bundle-hack/***".pathChanged())
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: threescale
-    appstudio.openshift.io/component: apicast-operator
+    appstudio.openshift.io/component: apicast-operator-bundle
     pipelines.appstudio.openshift.io/type: build
-  name: apicast-operator-on-push
+  name: apicast-operator-bundle-on-push
   namespace: 3scale-prod-tenant
 spec:
   params:
@@ -27,18 +27,15 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/3scale-prod-tenant/apicast-operator:{{revision}}
-  - name: build-platforms
-    value:
-    - linux/x86_64
+    value: quay.io/redhat-user-workloads/3scale-prod-tenant/apicast-operator-bundle:{{revision}}
   - name: dockerfile
-    value: rh-apicast-operator/Containerfile.apicast-operator
+    value: rh-apicast-operator/Containerfile.apicast-operator-bundle
   pipelineSpec:
     description: |
-      This pipeline is ideal for building multi-arch container images from a Containerfile while maintaining trust after pipeline customization.
+      This pipeline is ideal for building container images from a Containerfile while maintaining trust after pipeline customization.
 
-      _Uses `buildah` to create a multi-platform container image leveraging [trusted artifacts](https://konflux-ci.dev/architecture/ADR/0036-trusted-artifacts.html). It also optionally creates a source image and runs some build-time tests. This pipeline requires that the [multi platform controller](https://github.com/konflux-ci/multi-platform-controller) is deployed and configured on your Konflux instance. Information is shared between tasks using OCI artifacts instead of PVCs. EC will pass the [`trusted_task.trusted`](https://enterprisecontract.dev/docs/ec-policies/release_policy.html#trusted_task__trusted) policy as long as all data used to build the artifact is generated from trusted tasks.
-      This pipeline is pushed as a Tekton bundle to [quay.io](https://quay.io/repository/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta?tab=tags)_
+      _Uses `buildah` to create a container image leveraging [trusted artifacts](https://konflux-ci.dev/architecture/ADR/0036-trusted-artifacts.html). It also optionally creates a source image and runs some build-time tests. Information is shared between tasks using OCI artifacts instead of PVCs. EC will pass the [`trusted_task.trusted`](https://enterprisecontract.dev/docs/ec-policies/release_policy.html#trusted_task__trusted) policy as long as all data used to build the artifact is generated from trusted tasks.
+      This pipeline is pushed as a Tekton bundle to [quay.io](https://quay.io/repository/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta?tab=tags)_
     finally:
     - name: show-sbom
       params:
@@ -98,7 +95,7 @@ spec:
       description: Build a source image.
       name: build-source-image
       type: string
-    - default: "true"
+    - default: "false"
       description: Add built image into an OCI image index
       name: build-image-index
       type: string
@@ -110,12 +107,6 @@ spec:
       description: Path to a file with build arguments for buildah, see https://www.mankier.com/1/buildah-build#--build-arg-file
       name: build-args-file
       type: string
-    - default:
-      - linux/x86_64
-      description: List of platforms to build the container images on. The available
-        set of values is determined by the configuration of the multi-platform-controller.
-      name: build-platforms
-      type: array
     results:
     - description: ""
       name: IMAGE_URL
@@ -202,12 +193,7 @@ spec:
         workspace: git-auth
       - name: netrc
         workspace: netrc
-    - matrix:
-        params:
-        - name: PLATFORM
-          value:
-          - $(params.build-platforms)
-      name: build-images
+    - name: build-container
       params:
       - name: IMAGE
         value: $(params.output-image)
@@ -232,16 +218,14 @@ spec:
         value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
       - name: CACHI2_ARTIFACT
         value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
-      - name: IMAGE_APPEND_PLATFORM
-        value: "true"
       runAfter:
       - prefetch-dependencies
       taskRef:
         params:
         - name: name
-          value: buildah-remote-oci-ta
+          value: buildah-oci-ta
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remote-oci-ta:0.3@sha256:6c2c433ef94187e9aa73575004029cd6e2bbbdeefc7f90070595fb20f77bc121
+          value: quay.io/konflux-ci/tekton-catalog/task-buildah-oci-ta:0.3@sha256:11b9ce26fd2933ccc81ca3f983e094ec54326a2e0aaf8bdcc4c0b8fea1a42c53
         - name: kind
           value: task
         resolver: bundles
@@ -262,9 +246,9 @@ spec:
         value: $(params.build-image-index)
       - name: IMAGES
         value:
-        - $(tasks.build-images.results.IMAGE_REF[*])
+        - $(tasks.build-container.results.IMAGE_URL)@$(tasks.build-container.results.IMAGE_DIGEST)
       runAfter:
-      - build-images
+      - build-container
       taskRef:
         params:
         - name: name

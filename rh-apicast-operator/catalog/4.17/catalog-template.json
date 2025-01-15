@@ -255,6 +255,17 @@
             "schema": "olm.channel"
         },
         {
+            "entries": [
+                {
+                    "name": "apicast-operator.v0.13.0",
+                    "skipRange": "\u003c0.12.1"
+                }
+            ],
+            "name": "alpha",
+            "package": "apicast-operator",
+            "schema": "olm.channel"
+        },
+        {
             "schema": "olm.bundle",
             "image": "registry.redhat.io/3scale-amp2/3scale-apicast-operator-bundle@sha256:aae1d2eb7bf87de1f9b7f553cbfac382df6f4c4f8a61adadd710bfe988efdf5e"
         },
@@ -369,6 +380,10 @@
         {
             "schema": "olm.bundle",
             "image": "registry.redhat.io/3scale-amp2/apicast-rhel7-operator-metadata@sha256:bcc5ed9560667c7347f3044c7fa6148e3867c17e93e83595a62794339a5a6b0d"
+        },
+        {
+            "schema": "olm.bundle",
+            "image": "quay.io/redhat-user-workloads/3scale-prod-tenant/apicast-operator-bundle@sha256:549f15d9a93df14d9ef1f5c6814e2e7f8033936b94eafd2950d640eb52c417b1"
         }
     ]
 }

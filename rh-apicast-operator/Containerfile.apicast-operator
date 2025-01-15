@@ -6,7 +6,7 @@ COPY drift-detection/detector.sh /detector.sh
 # Check to see if we need to react to any uptream changes
 COPY drift-cache /drift-cache
 WORKDIR /tmp
-COPY apicast-operator/Dockerfile .
+COPY rh-apicast-operator/apicast-operator/Dockerfile .
 RUN /detector.sh ./Dockerfile /drift-cache/apicast-operator/Dockerfile
 
 FROM registry.access.redhat.com/ubi9/go-toolset:1.20.12-3.1713832665 AS builder
@@ -22,18 +22,18 @@ ENV BINARY_NAME="manager"
 
 WORKDIR /workspace
 # Copy the Go Modules manifests
-COPY apicast-operator/go.mod go.mod
-COPY apicast-operator/go.sum go.sum
+COPY rh-apicast-operator/apicast-operator/go.mod go.mod
+COPY rh-apicast-operator/apicast-operator/go.sum go.sum
 # cache deps before building and copying source so that we don't need to re-download as much
 # and so that source changes don't invalidate our downloaded layer
 RUN go mod download
 
 # Copy the go source
-COPY apicast-operator/main.go main.go
-COPY apicast-operator/apis/ apis/
-COPY apicast-operator/controllers/ controllers/
-COPY apicast-operator/pkg/ pkg/
-COPY apicast-operator/version/ version/
+COPY rh-apicast-operator/apicast-operator/main.go main.go
+COPY rh-apicast-operator/apicast-operator/apis/ apis/
+COPY rh-apicast-operator/apicast-operator/controllers/ controllers/
+COPY rh-apicast-operator/apicast-operator/pkg/ pkg/
+COPY rh-apicast-operator/apicast-operator/version/ version/
 
 
 # Build
@@ -62,7 +62,7 @@ RUN chown ${USER_UID} /${OPERATOR_BINARY_NAME}
 # Install licenses
 ENV LICENSES_DIR="/licenses/apicast-operator/"
 RUN mkdir -p ${LICENSES_DIR}
-COPY apicast-operator/licenses.xml ${LICENSES_DIR}
+COPY rh-apicast-operator/apicast-operator/licenses.xml ${LICENSES_DIR}
 RUN chown ${USER_UID} ${LICENSES_DIR}/licenses.xml
 
 ENTRYPOINT ["/manager"]

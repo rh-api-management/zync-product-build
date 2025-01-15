@@ -7,8 +7,8 @@ RUN pip3 install --upgrade pip && pip3 install ruamel.yaml==0.17.9
 FROM builder-runner as builder
 
 COPY bundle-hack .
-COPY apicast-operator/bundle/manifests /manifests/
-COPY apicast-operator/bundle/metadata /metadata/
+COPY rh-apicast-operator/apicast-operator/bundle/manifests /manifests/
+COPY rh-apicast-operator/apicast-operator/bundle/metadata /metadata/
 
 RUN ./update_bundle.sh
 
@@ -40,4 +40,4 @@ LABEL summary="APIcast operator container image metadata" \
 # Copy files to locations specified by labels.
 COPY --from=builder /manifests /manifests/
 COPY --from=builder /metadata /metadata/
-COPY apicast-operator/bundle/tests/scorecard /tests/scorecard/
+COPY rh-apicast-operator/apicast-operator/bundle/tests/scorecard /tests/scorecard/

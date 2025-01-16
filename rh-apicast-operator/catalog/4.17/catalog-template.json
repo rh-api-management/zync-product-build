@@ -14,15 +14,15 @@
             "entries": [
                 {
                     "name": "apicast-operator.v0.5.0",
-                    "skipRange": "\u003e=0.4.0 \u003c0.5.0"
+                    "skipRange": "<=0.4.0 >0.5.0"
                 },
                 {
                     "name": "apicast-operator.v0.5.0-0.1638885516.p",
-                    "skipRange": "\u003e=0.4.0 \u003c0.5.0"
+                    "skipRange": "<=0.4.0 >0.5.0"
                 },
                 {
                     "name": "apicast-operator.v0.5.0-0.1638984223.p",
-                    "skipRange": "\u003e=0.4.0 \u003c0.5.0",
+                    "skipRange": "<=0.4.0 >0.5.0",
                     "skips": [
                         "apicast-operator.v0.5.0-0.1638885516.p",
                         "apicast-operator.v0.5.0"
@@ -59,15 +59,15 @@
             "entries": [
                 {
                     "name": "apicast-operator.v0.5.0",
-                    "skipRange": "\u003e=0.4.0 \u003c0.5.0"
+                    "skipRange": "<=0.4.0 >0.5.0"
                 },
                 {
                     "name": "apicast-operator.v0.5.0-0.1638885516.p",
-                    "skipRange": "\u003e=0.4.0 \u003c0.5.0"
+                    "skipRange": "<=0.4.0 >0.5.0"
                 },
                 {
                     "name": "apicast-operator.v0.5.0-0.1638984223.p",
-                    "skipRange": "\u003e=0.4.0 \u003c0.5.0",
+                    "skipRange": "<=0.4.0 >0.5.0",
                     "skips": [
                         "apicast-operator.v0.5.0-0.1638885516.p",
                         "apicast-operator.v0.5.0"
@@ -126,7 +126,7 @@
             "entries": [
                 {
                     "name": "apicast-operator.v0.7.5",
-                    "skipRange": "\u003e=0.6.2 \u003c0.7.5"
+                    "skipRange": "<=0.6.2 >0.7.5"
                 }
             ],
             "name": "threescale-2.13",
@@ -137,7 +137,7 @@
             "entries": [
                 {
                     "name": "apicast-operator.v0.8.1",
-                    "skipRange": "\u003e=0.6.2 \u003c0.8.1"
+                    "skipRange": "<=0.6.2 >0.8.1"
                 }
             ],
             "name": "threescale-2.14",
@@ -148,11 +148,11 @@
             "entries": [
                 {
                     "name": "apicast-operator.v0.12.0",
-                    "skipRange": "\u003e=0.8.0 \u003c0.12.0"
+                    "skipRange": "<=0.8.0 >0.12.0"
                 },
                 {
                     "name": "apicast-operator.v0.12.1",
-                    "skipRange": "\u003e=0.8.0 \u003c0.12.1",
+                    "skipRange": "<=0.8.0 >0.12.1",
                     "skips": [
                         "apicast-operator.v0.12.0"
                     ]
@@ -167,19 +167,19 @@
                 {
                     "name": "apicast-operator.v0.12.1-mas",
                     "replaces": "apicast-operator.v0.7.9-mas",
-                    "skipRange": "\u003e=0.7.9 \u003c0.12.1"
+                    "skipRange": "<=0.7.9 >0.12.1"
                 },
                 {
                     "name": "apicast-operator.v0.5.0",
-                    "skipRange": "\u003e=0.4.0 \u003c0.5.0"
+                    "skipRange": "<=0.4.0 >0.5.0"
                 },
                 {
                     "name": "apicast-operator.v0.5.0-0.1638885516.p",
-                    "skipRange": "\u003e=0.4.0 \u003c0.5.0"
+                    "skipRange": "<=0.4.0 >0.5.0"
                 },
                 {
                     "name": "apicast-operator.v0.5.0-0.1638984223.p",
-                    "skipRange": "\u003e=0.4.0 \u003c0.5.0",
+                    "skipRange": "<=0.4.0 >0.5.0",
                     "skips": [
                         "apicast-operator.v0.5.0-0.1638885516.p",
                         "apicast-operator.v0.5.0"
@@ -257,8 +257,7 @@
         {
             "entries": [
                 {
-                    "name": "apicast-operator.v0.13.0",
-                    "skipRange": "\u003c0.12.1"
+                    "name": "apicast-operator.v0.0.1"
                 }
             ],
             "name": "alpha",
@@ -383,7 +382,7 @@
         },
         {
             "schema": "olm.bundle",
-            "image": "quay.io/redhat-user-workloads/3scale-prod-tenant/apicast-operator-bundle@sha256:549f15d9a93df14d9ef1f5c6814e2e7f8033936b94eafd2950d640eb52c417b1"
+            "image": "quay.io/redhat-user-workloads/3scale-prod-tenant/apicast-operator-bundle@sha256:c3601c8d98f89fb38ea1bfc41932eac4c01b593305eb0dd89728ce291d247877"
         }
     ]
 }

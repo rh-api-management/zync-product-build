@@ -39,6 +39,7 @@ spec:
       - {"type": "rpm", "path": "rh-porta"}
       - {"type": "bundler", "path": "rh-porta/porta/"}
       - {"type": "yarn", "path": "rh-porta/porta/"}
+      - {"type": "npm", "path": "rh-porta/porta/script/yarn"}
   - name: hermetic
     value: "true"
   pipelineSpec:

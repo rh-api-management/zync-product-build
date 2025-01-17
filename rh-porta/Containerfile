@@ -16,6 +16,8 @@ USER root
 
 COPY ./rh-porta/porta /opt/system
 
+RUN cat /cachi2/cachi2.env && cp /cachi2/cachi2.env /opt/system
+
 WORKDIR /opt/system
 
 RUN cp -pR openshift/system/config/* config/ \

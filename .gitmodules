@@ -1,30 +1,27 @@
-[submodule "drift-detection"]
-	path = drift-detection
-	url = https://github.com/arewm/drift-detection
 [submodule "rh-apisonator/apisonator"]
 	path = rh-apisonator/apisonator
 	url = https://github.com/3scale/apisonator
-	branch = 3scale-2.16-stable
+	branch = master
 [submodule "rh-zync/zync"]
 	path = rh-zync/zync
 	url = https://github.com/3scale/zync
-	branch = 3scale-2.16-stable
+	branch = master
 [submodule "rh-toolbox/toolbox"]
 	path = rh-toolbox/toolbox
 	url = https://github.com/3scale/3scale_toolbox
-	branch = 3scale-2.16-stable
+	branch = main
 [submodule "rh-porta/porta"]
 	path = rh-porta/porta
 	url = https://github.com/3scale/porta
-	branch = 3scale-2.16-stable
+	branch = master
 [submodule "rh-apicast/apicast"]
 	path = rh-apicast/apicast
 	url = https://github.com/3scale/apicast
-	branch = 3scale-2.16-stable
+	branch = master
 [submodule "rh-apicast-operator/apicast-operator"]
 	path = rh-apicast-operator/apicast-operator
 	url = https://github.com/3scale/apicast-operator
-	branch = 3scale-2.16-stable
+	branch = master
 
 
 [submodule "rh-searchd/manticore"]
@@ -42,3 +39,7 @@
 	path = rh-searchd/nlohmann-json
 	url = https://github.com/nlohmann/json
 	branch = develop
+
+[submodule "drift-detection"]
+	path = drift-detection
+	url = https://github.com/arewm/drift-detection

@@ -72,9 +72,13 @@ RUN BACKEND_VERSION=$(gem build apisonator.gemspec | \
       sed -n -e 's/^\s*Version\:\s*\([^[:space:]]*\)$/\1/p') \
  && gem unpack "apisonator-${BACKEND_VERSION}.gem" --target=/opt/ruby \
  && cd "/opt/ruby/apisonator-${BACKEND_VERSION}" \
-# && . /tmp/cachi2.env \
+ && cp --archive /cachi2 /opt/cachi2  \
+ && sed -i 's|/cachi2|/opt/cachi2|g' /opt/cachi2/output/bundler/config_override/config \
+ && mkdir .bundle \
+ && cp /opt/cachi2/output/bundler/config_override/config .bundle/config \
  && bundle install --jobs $(grep -c processor /proc/cpuinfo) \
  && ln -s /opt/ruby/apisonator-${BACKEND_VERSION} /opt/app
+
 
 # Bundler doesn't install native extensions for gems that are used as local git overrides (which is how cachito provides `git` dependencies in a Gemfile),
 # so we need to build those manually, for all such gems that require native extensions (in our case, puma)

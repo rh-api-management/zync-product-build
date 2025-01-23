@@ -3,7 +3,7 @@
 # enables strict mode: `-e` fails if error, `-u` checks variable references, `-o pipefail`: prevents errors in a pipeline from being masked
 set -euo pipefail
 
-export APICAST_IMAGE_PULLSPEC="quay.io/redhat-user-workloads/3scale-prod-tenant/apicast-gateway@sha256:de202ee9c78ae42a8a315563f8257295b4c97402dae72adad93375cdb2196ed7"
+export APICAST_IMAGE_PULLSPEC="quay.io/redhat-user-workloads/3scale-prod-tenant/apicast-gateway@sha256:f31522d545ad43e8940b879d2907fefc4339b2fd9768cbcf551ad07e3ec458c5"
 export OPERATOR_IMAGE_PULLSPEC="quay.io/redhat-user-workloads/3scale-prod-tenant/apicast-operator@sha256:30784d3f5d9afc8d5f62a22327796e58914b012b90d5a123d6d658db5a590646"
 
 export CSV_FILE=/manifests/apicast-operator.clusterserviceversion.yaml

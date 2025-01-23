@@ -35,6 +35,10 @@ RUN cd /opt/toolbox \
     && bundle config --local gemfile Gemfile
 
 RUN cd /opt/toolbox/ \
+    && cp --archive /cachi2 /opt/cachi2  \
+    && sed -i 's|/cachi2|/opt/cachi2|g' /opt/cachi2/output/bundler/config_override/config \
+    && mkdir .bundle \
+    && cp /opt/cachi2/output/bundler/config_override/config .bundle/config \
     && bundle config list \
     && bundle install \
     && bundle binstubs 3scale_toolbox

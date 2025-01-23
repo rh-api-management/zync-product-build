@@ -6,8 +6,13 @@ metadata:
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "main"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && 
+      target_branch == "main" &&
+      ( "rh-apicast-operator/catalog/4.17/***".pathChanged() ||
+          ".tekton/fbc-4-17-3scale-operator-pull-request.yaml".pathChanged() ||
+          "rh-apicast-operator/catalog/4.17.Dockerfile".pathChanged()
+      )
+
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: threescale
@@ -29,7 +34,7 @@ spec:
   - name: dockerfile
     value: rh-apicast-operator/catalog/4.17.Dockerfile
   - name: path-context
-    value: catalog
+    value: rh-apicast-operator/catalog
   pipelineSpec:
     description: |
       This pipeline is ideal for building and verifying [file-based catalogs](https://konflux-ci.dev/docs/advanced-how-tos/building-olm.adoc#building-the-file-based-catalog).

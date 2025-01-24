@@ -34,8 +34,6 @@ EXPOSE 8080
 
 USER root
 
-RUN mkdir -p tmp log; chmod -vfR g+w tmp log
-
 RUN dnf install --setopt=skip_missing_names_on_install=False,tsflags=nodocs -y shared-mime-info postgresql rubygem-irb rubygem-rdoc \
     && dnf clean all \
     && rm -rf /var/cache/yum
@@ -79,6 +77,10 @@ RUN chmod +t /tmp
 # The git check was added in https://github.com/git/git/commit/8959555cee7ec045958f9b6dd62e541affb7e7d9 and included in git v2.35.2 or newer.
 # Openshift changes the effective user ID, so this git check needs to be bypassed.
 RUN git config --global --add safe.directory '*'
+
+RUN mkdir -p -m 0775 tmp/cache log \
+    && chown -vR ${USER_UID} tmp log db \
+    && chmod -vR g+w tmp log db
 
 USER ${USER_UID}
 

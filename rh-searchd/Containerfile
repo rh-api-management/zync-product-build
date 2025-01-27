@@ -1,6 +1,6 @@
 FROM quay.io/redhat-user-workloads/3scale-prod-tenant/porta@sha256:9bd789cbac9c8951037a1cef7a83a72d6e43e76fd47a9e9d3421398ee867ce54 as porta
 
-FROM registry.access.redhat.com/ubi9:9.5-1732804088 AS builder
+FROM registry.access.redhat.com/ubi9:9.5-1736404036 AS builder
 
 # Setup environment and dependencies
 ENV BUILD_PATH=/tmp/manticore_uselessly_very_long_path_to_prevent_rpm_build_issues \

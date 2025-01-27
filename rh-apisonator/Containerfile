@@ -11,7 +11,7 @@
 # - BUILD_DEP_PKGS: Packages needed to build/install the project.
 # - PUMA_WORKERS: (edit ENV) Default number of Puma workers to serve the app.
 #
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10-1086 as drift-detectorist
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10-1154 as drift-detectorist
 
 # Attempt to detect Drift in files that have changed upstream and need to be updated for the product build.
 USER 0
@@ -22,7 +22,7 @@ WORKDIR /tmp
 COPY rh-apisonator/apisonator/openshift/distro/ubi/8/Dockerfile .
 RUN /detector.sh ./Dockerfile /drift-cache/apisonator/Dockerfile
 
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10-1086
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10-1154
 
 LABEL summary="3scale API Management platform backend." \
       description="3scale is an API Management Platform suitable to manage both internal and external API services. This image contains the platform's backend, which takes care of applying rate limits, authorization, and reporting of HTTP(s) requests." \

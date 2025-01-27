@@ -16,6 +16,8 @@ USER root
 
 COPY ./rh-porta/porta /opt/system
 
+RUN cat /cachi2/cachi2.env && cp /cachi2/cachi2.env /opt/system
+
 WORKDIR /opt/system
 
 RUN cp -pR openshift/system/config/* config/ \
@@ -26,8 +28,10 @@ RUN dnf -y module enable ruby:${RUBY_VERSION} nodejs:16 mysql:8.0 \
 
 # install bundler
 RUN set -x \
-    && BUNDLER_VERSION=$(awk '/BUNDLED WITH/ { getline; print $1 }' Gemfile.lock) \
-    && gem install --no-document bundler:$BUNDLER_VERSION \
+# cachi2 doesn't currently support fetching the bundler gem. Therefore, it is not currently possible to select a custom \
+# bundler version in the product build. We'll have to go with the one being installed with the ruby module.
+#    && BUNDLER_VERSION=$(awk '/BUNDLED WITH/ { getline; print $1 }' Gemfile.lock) \
+#    && gem install --no-document bundler:$BUNDLER_VERSION \
     && bundle config build.nokogiri --use-system-libraries \
     && bundle config set --local deployment true \
     && bundle config set --local without development:test \
@@ -113,8 +117,7 @@ COPY --from=builder /usr/local/bin/bundle* /usr/local/bin
 # in RHEL 8 podman-catatonit pulls in too many useless deps so we don't install the RPM directly, on RHEL 9 simply use package `catatonit`
 COPY --from=builder /usr/libexec/catatonit/catatonit /usr/libexec/catatonit/catatonit
 
-RUN subscription-manager refresh \
-    && dnf -y --setopt=module_stream_switch=True module enable ruby:${RUBY_VERSION} nodejs:16 mysql:8.0 \
+RUN dnf -y --setopt=module_stream_switch=True module enable ruby:${RUBY_VERSION} nodejs:16 mysql:8.0 \
     && dnf install -y --setopt=skip_missing_names_on_install=False,tsflags=nodocs shared-mime-info postgresql rubygem-irb rubygem-rdoc ruby libpq mysql mysql-libs gd git liberation-sans-fonts file libxml2 libxslt jemalloc \
     && dnf -y clean all
 

@@ -1,0 +1,45 @@
+contentOrigin:
+  repofiles:
+    - ./ubi.repo
+    - ./redhat.repo
+moduleEnable:
+  - ruby:2.7
+  - nodejs:16
+  - mysql:8.0
+arches:
+#  - aarch64 # for aarch64 support we are missing the jemalloc rpm. We seem to have everything else, but there is no `rh-ocs-4-for-rhel-8-aarch64-rpms`
+  - x86_64
+  - ppc64le
+  - s390x
+packages:
+  - automake
+  - 'dnf-command(download)'
+  - file
+  - gcc
+  - gcc-c++
+  - gd
+  - gd-devel
+  - git
+  - jemalloc
+  - liberation-sans-fonts
+  - libpq
+  - libpq-devel
+  - libxml2
+  - libxml2-devel
+  - libxslt
+  - libxslt-devel
+  - make
+  - mysql
+  - mysql-devel
+  - mysql-libs
+  - mysql-server
+  - mysql-test
+  - nodejs
+  - podman-catatonit
+  - postgresql
+  - redhat-rpm-config
+  - ruby
+  - ruby-devel
+  - rubygem-irb
+  - rubygem-rdoc
+  - shared-mime-info

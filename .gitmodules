@@ -17,7 +17,7 @@
 [submodule "rh-apicast/apicast"]
 	path = rh-apicast/apicast
 	url = https://github.com/3scale/apicast
-	branch = master
+	branch = 3scale-2.15-stable-konflux
 [submodule "rh-apicast-operator/apicast-operator"]
 	path = rh-apicast-operator/apicast-operator
 	url = https://github.com/3scale/apicast-operator
